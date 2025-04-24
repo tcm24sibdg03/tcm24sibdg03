@@ -5,7 +5,7 @@ Desenvolver um sistema de gestão que permita registrar e organizar a informaç�
 
 ---
 
-Uma oficina mecânica enfrenta desafios na gestão de clientes, veículos e agendamentos de serviços. Atualmente, a oficina utiliza métodos manuais para registrar informações, o que pode levar a confusões e à perda de dados importantes. Cada cliente pode possuir vários veículos, e cada veículo pode requerer diferentes serviços ao longo do tempo, dificultando o acompanhamento do histórico de serviços realizados e a gestão eficiente dos agendamentos.
+Uma oficina mecânica enfrenta desafios significativos na gestão de clientes, veículos e agendamentos de serviços dos mesmos. Atualmente, a oficina utiliza métodos manuais para o registo de toda a informação, o que pode levar a confusões e à perda de dados importantes. Cada cliente pode possuir vários veículos, e cada veículo poderá requerer diferentes serviços ao longo do tempo, dificultando o acompanhamento do histórico de serviços realizados e a gestão eficiente dos agendamentos em geral.
 
 ---
 
