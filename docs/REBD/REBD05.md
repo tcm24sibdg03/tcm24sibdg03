@@ -35,3 +35,8 @@ CREATE TABLE IF NOT EXISTS `tabela_b` (
 ## DML
 
 _(Apresentar exemplos dos pedidos SQL à base de dados que demonstrem o cumprimento dos requisitos identificados. Para cada query apresentar numa breve descrição do requisito que pretende resolver e do resultado espectável.)_
+
+---
+
+| [< Previous](REBD04.md) | [^ Main](../../README.md) |
+|:----------------------------------:|:----------------------------------:|
