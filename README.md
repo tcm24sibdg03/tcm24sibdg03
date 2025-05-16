@@ -34,6 +34,6 @@ Uma oficina mecânica enfrenta desafios significativos na gestão de clientes, v
 ---
 
 ## Team
-- Guilherme Andrade a045395 [@adr-g](https://github.com/adr-g)
-- Jonathan Claro a045207 [@JonathanClaro](https://github.com/JonathanClaro)
+- Guilherme Andrade - a045395 [@adr-g](https://github.com/adr-g)
+- Jonathan Claro - a045207 [@JonathanClaro](https://github.com/JonathanClaro)
 
