@@ -22,6 +22,7 @@ Uma oficina mecânica enfrenta desafios significativos na gestão de clientes, v
 ## Report
 - located in the `docs` folder
 - [REI](docs/REI/REI00.md)
+- [REBD](docs/REBD/REBD00.md)
 
 ---
 
