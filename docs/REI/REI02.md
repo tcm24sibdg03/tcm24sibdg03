@@ -1,4 +1,4 @@
-# Especificação de Requisitos
+# C2 : Especificação de Requisitos
 
 ## Atores e Funcionalidades
 
