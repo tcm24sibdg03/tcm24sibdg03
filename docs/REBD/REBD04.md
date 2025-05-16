@@ -10,11 +10,11 @@ _(Apresentar o esquema físico da Base de Dados. Para cada relação resultante,
 
 ### Tabela_a
 
-#### DESCRIÇÃO <!-- omit in toc -->
+#### DESCRIÇÃO
 
 Descrição da Tabela A
 
-#### COLUNAS <!-- omit in toc -->
+#### COLUNAS
 
 | Nome     | Descrição                 | Domínio     | por Omissão | Automático | Nulo |
 | :------- | :------------------------ | :---------- | :---------- | :--------- | :--- |
@@ -24,7 +24,7 @@ Descrição da Tabela A
 | conteudo | Conteudo do documento     | TEXT        | -           | Não        | Sim  |
 | tipo     | tipo de testes            | BIGINT      | -           | Não        | Sim  |
 
-#### RESTRIÇÕES DE INTEGRIDADE <!-- omit in toc -->
+#### RESTRIÇÕES DE INTEGRIDADE
 
 - **Chave Primária**: 
 
@@ -60,11 +60,11 @@ Descrição da Tabela A
 
 ### Tabela_b
 
-#### DESCRIÇÃO <!-- omit in toc -->
+#### DESCRIÇÃO
 
 Descrição da Tabela B
 
-#### COLUNAS <!-- omit in toc -->
+#### COLUNAS
 
 | Nome     | Descrição                 | Domínio     | por Omissão | Automático | Nulo |
 | :------- | :------------------------ | :---------- | :---------- | :--------- | :--- |
@@ -74,7 +74,7 @@ Descrição da Tabela B
 | conteudo | Conteudo do documento     | TEXT        | -           | Não        | Sim  |
 | tipo     | tipo de testes            | BIGINT      | -           | Não        | Sim  |
 
-#### RESTRIÇÕES DE INTEGRIDADE <!-- omit in toc -->
+#### RESTRIÇÕES DE INTEGRIDADE
 
 - **Chave Primária**: 
 
