@@ -43,5 +43,5 @@ As seguintes regras de negócio foram identificadas como necessárias à integri
 
 ---
 
-| [< Previous](REBD01.md) | [^ Main](../../README.md) | [Next >](REI03.md) |
+| [< Previous](REBD01.md) | [^ Main](../../README.md) | [Next >](REBD03.md) |
 |:----------------------------------:|:----------------------------------:|:----------------------------------:|
