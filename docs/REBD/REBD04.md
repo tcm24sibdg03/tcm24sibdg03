@@ -61,9 +61,30 @@
 
 ---
 
-## Vistas
+## Vista SQL
 
-_(Inserir a descrição e estrutura das vista, caso existam.)_
+### agendamentos_futuros
+
+```sql
+CREATE VIEW agendamentos_futuros AS
+SELECT 
+    a.id_agendamento,
+    a.data,
+    a.hora,
+    a.status_confirmacao,
+    c.nome AS cliente,
+    v.marca,
+    v.modelo,
+    s.tipo AS tipo_servico,
+    s.preco
+FROM Agendamento a
+JOIN Veiculo v ON a.id_veiculo = v.id_veiculo
+JOIN Cliente c ON v.id_cliente = c.id_cliente
+JOIN Servico s ON a.id_servico = s.id_servico
+WHERE a.data >= CURDATE();
+```
+
+Esta vista permite consultar todos os agendamentos futuros, juntamente com os dados do cliente, veículo e serviço, sendo útil para visualização de agenda e relatórios operacionais.
 
 ---
 
