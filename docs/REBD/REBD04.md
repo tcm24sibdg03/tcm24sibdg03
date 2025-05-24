@@ -17,6 +17,22 @@ Regista os clientes da oficina, incluindo os seus dados de contacto.
 
 ---
 
+### Veiculo
+
+Contém os veículos registados na oficina, associados a um cliente.
+
+| Nome        | Descrição                       | Domínio                                             | Por Omissão | Automático | Nulo |
+|-------------|----------------------------------|------------------------------------------------------|--------------|-------------|------|
+| id_veiculo  | Identificador do veículo         | INT, PRIMARY KEY, AUTO_INCREMENT                     | -            | Sim         | Não  |
+| matricula   | Matrícula do veículo             | VARCHAR(15) UNIQUE NOT NULL                          | -            | Não         | Não  |
+| marca       | Marca do veículo                 | VARCHAR(50) NOT NULL                                 | -            | Não         | Não  |
+| modelo      | Modelo do veículo                | VARCHAR(50) NOT NULL                                 | -            | Não         | Não  |
+| ano         | Ano de fabrico                   | YEAR NOT NULL                                        | -            | Não         | Não  |
+| km          | Quilometragem atual              | INT NOT NULL                                         | -            | Não         | Não  |
+| vin         | Número de identificação do veículo | VARCHAR(30) UNIQUE NOT NULL                        | -            | Não         | Não  |
+| id_cliente  | Referência ao dono (cliente)     | INT, FOREIGN KEY → Cliente(id_cliente) NOT NULL     | -            | Não         | Não  |
+
+---
 
 
 ## Vistas
