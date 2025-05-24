@@ -4,112 +4,27 @@
 
 ## Tabelas
 
-- [Relações](#relações)
-  - [Tabela_a](#tabela_a)
-  - [Tabela_b](#tabela_b)
-- [Vistas](#vistas)
+### Cliente
+| Atributo     | Tipo          | Restrições                        |
+|--------------|---------------|-----------------------------------|
+| id_cliente   | INT           | PRIMARY KEY, AUTO_INCREMENT, NOT NULL |
+| nome         | VARCHAR(100)  | NOT NULL                          |
+| telefone     | VARCHAR(15)   | NOT NULL                          |
+| email        | VARCHAR(100)  | NOT NULL                          |
 
-## Relações
+### Veiculo
+| Atributo        | Tipo          | Restrições                        |
+|-----------------|---------------|-----------------------------------|
+| id_veiculo      | INT           | PRIMARY KEY, AUTO_INCREMENT, NOT NULL |
+| matricula       | VARCHAR(15)   | UNIQUE, NOT NULL                  |
+| marca           | VARCHAR(50)   | NOT NULL                          |
+| modelo          | VARCHAR(50)   | NOT NULL                          |
+| ano             | YEAR          | NOT NULL                          |
+| km              | INT           | NOT NULL                          |
+| vin             | VARCHAR(30)   | UNIQUE, NOT NULL                  |
+| id_cliente      | INT           | FOREIGN KEY REFERENCES Cliente(id_cliente), NOT NULL |
 
-### Tabela_a
 
-#### DESCRIÇÃO
-
-Descrição da Tabela A
-
-#### COLUNAS
-
-| Nome     | Descrição                 | Domínio     | por Omissão | Automático | Nulo |
-| :------- | :------------------------ | :---------- | :---------- | :--------- | :--- |
-| id       | identificador da tabela A | BIGINT      | -           | Sim        | Não  |
-| data     | Data do registo           | DATE        | now()       | Não        | Não  |
-| nome     | Nome do registo           | VARCHAR(50) | -           | Não        | Não  |
-| conteudo | Conteudo do documento     | TEXT        | -           | Não        | Sim  |
-| tipo     | tipo de testes            | BIGINT      | -           | Não        | Sim  |
-
-#### RESTRIÇÕES DE INTEGRIDADE
-
-- **Chave Primária**: 
-
-| Coluna(s) |
-| --------- |
-| id        |
-
-- **Unicidade** (valores únicos)*:
-
-| Nome        | Coluna(s) | Indexar |
-| ----------- | --------- | ------- |
-| nome_unique | nome      | Sim     |
-
-- **Referêncial** (chaves estrangeiras)*:
-
-| Nome  | Coluna(s) | Tabela referênciada | Coluna(s) referênciada(s) | Indexar |
-| ----- | --------- | ------------------- | ------------------------- | ------- |
-| ta_fk | tipo      | Tabela_c            | id                        | Não     |
-
-- **Atributos** (check)*:
-
-| Nome | Coluna(s) | condição |
-| ---- | --------- | -------- |
-|      |           |          |
-
-- **Outros Indices***:
-
-| Nome | Coluna(s) |
-| ---- | --------- |
-|      |           |
-
-  *Remover se não existir.
-
-### Tabela_b
-
-#### DESCRIÇÃO
-
-Descrição da Tabela B
-
-#### COLUNAS
-
-| Nome     | Descrição                 | Domínio     | por Omissão | Automático | Nulo |
-| :------- | :------------------------ | :---------- | :---------- | :--------- | :--- |
-| id       | identificador da tabela A | BIGINT      | -           | Sim        | Não  |
-| data     | Data do registo           | DATE        | now()       | Não        | Não  |
-| nome     | Nome do registo           | VARCHAR(50) | -           | Não        | Não  |
-| conteudo | Conteudo do documento     | TEXT        | -           | Não        | Sim  |
-| tipo     | tipo de testes            | BIGINT      | -           | Não        | Sim  |
-
-#### RESTRIÇÕES DE INTEGRIDADE
-
-- **Chave Primária**: 
-
-| Coluna(s) |
-| --------- |
-| id        |
-
-- **Unicidade** (valores únicos)*:
-
-| Nome        | Coluna(s) | Indexar |
-| ----------- | --------- | ------- |
-| nome_unique | nome      | Sim     |
-
-- **Referêncial** (chaves estrangeiras)*:
-
-| Nome  | Coluna(s) | Tabela referênciada | Coluna(s) referênciada(s) | Indexar |
-| ----- | --------- | ------------------- | ------------------------- | ------- |
-| ta_fk | tipo      | Tabela_c            | id                        | Não     |
-
-- **Atributos** (check)*:
-
-| Nome | Coluna(s) | condição |
-| ---- | --------- | -------- |
-|      |           |          |
-
-- **Outros Indices***:
-
-| Nome | Coluna(s) |
-| ---- | --------- |
-|      |           |
-
-  *Remover se não existir.
 
 ## Vistas
 
