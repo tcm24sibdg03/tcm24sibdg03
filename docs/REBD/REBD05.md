@@ -1,40 +1,79 @@
-# C5 : SQL
+# C5 : SQL (DDL & DML)
+
+---
 
 ## DDL
 
-_(Apresentar o SQL para criação do esquema definido acima num SGBD MySQL.)_
-
-
 ```sql
-USE `test`;
+USE `autoshop`;
 
-DROP TABLE IF EXISTS `tabela_a`;
-DROP TABLE IF EXISTS `tabela_b`;
+DROP TABLE IF EXISTS `Cliente`;
+DROP TABLE IF EXISTS `Veiculo`;
+DROP TABLE IF EXISTS `Servico`;
+DROP TABLE IF EXISTS `Agendamento`;
+DROP TABLE IF EXISTS `Historico`;
+DROP TABLE IF EXISTS `Acao_Recomendada`;
 
-CREATE TABLE IF NOT EXISTS `tabela_a` (
-  `model` int(4) unsigned NOT NULL,
-  `speed` int(4) unsigned NOT NULL,
-  `ram` int(3) unsigned NOT NULL,
-  `hd` float unsigned NOT NULL,
-  `screen` float unsigned NOT NULL,
-  `price` int(7) NOT NULL,
-  PRIMARY KEY (`model`)
-);
+CREATE TABLE IF NOT EXISTS `Cliente` (
+  `id_cliente` INT AUTO_INCREMENT PRIMARY KEY,
+  `nome` VARCHAR(100) NOT NULL,
+  `telefone` VARCHAR(15) NOT NULL,
+  `email` VARCHAR(100) NOT NULL
+) 
 
-CREATE TABLE IF NOT EXISTS `tabela_b` (
-  `model` int(4) unsigned NOT NULL,
-  `speed` int(4) unsigned NOT NULL,
-  `ram` int(3) unsigned NOT NULL,
-  `hd` float unsigned NOT NULL,
-  `cd` varchar(3) COLLATE latin1_bin NOT NULL,
-  `price` int(7) NOT NULL,
-  PRIMARY KEY (`model`)
-);
+CREATE TABLE IF NOT EXISTS `Veiculo` (
+  `id_veiculo` INT AUTO_INCREMENT PRIMARY KEY,
+  `matricula` VARCHAR(15) NOT NULL UNIQUE,
+  `marca` VARCHAR(50) NOT NULL,
+  `modelo` VARCHAR(50) NOT NULL,
+  `ano` YEAR NOT NULL,
+  `km` INT NOT NULL,
+  `vin` VARCHAR(30) NOT NULL UNIQUE,
+  `id_cliente` INT NOT NULL,
+  FOREIGN KEY (`id_cliente`) REFERENCES `Cliente`(`id_cliente`)
+) 
+
+CREATE TABLE IF NOT EXISTS `Servico` (
+  `id_servico` INT AUTO_INCREMENT PRIMARY KEY,
+  `tipo` ENUM('Revisão', 'Troca de Óleo', 'Inspeção', 'Outro') NOT NULL,
+  `preco` DECIMAL(10,2) NOT NULL
+) 
+
+CREATE TABLE IF NOT EXISTS `Agendamento` (
+  `id_agendamento` INT AUTO_INCREMENT PRIMARY KEY,
+  `data` DATE NOT NULL,
+  `hora` TIME NOT NULL,
+  `status_confirmacao` ENUM('Pendente', 'Confirmado', 'Cancelado') NOT NULL,
+  `id_veiculo` INT NOT NULL,
+  `id_servico` INT NOT NULL,
+  FOREIGN KEY (`id_veiculo`) REFERENCES `Veiculo`(`id_veiculo`),
+  FOREIGN KEY (`id_servico`) REFERENCES `Servico`(`id_servico`)
+) 
+
+CREATE TABLE IF NOT EXISTS `Historico` (
+  `id_historico` INT AUTO_INCREMENT PRIMARY KEY,
+  `notas` TEXT,
+  `id_agendamento` INT NOT NULL,
+  `id_veiculo` INT NOT NULL,
+  `id_servico` INT NOT NULL,
+  FOREIGN KEY (`id_agendamento`) REFERENCES `Agendamento`(`id_agendamento`),
+  FOREIGN KEY (`id_veiculo`) REFERENCES `Veiculo`(`id_veiculo`),
+  FOREIGN KEY (`id_servico`) REFERENCES `Servico`(`id_servico`)
+) 
+
+CREATE TABLE IF NOT EXISTS `Acao_Recomendada` (
+  `id_acao` INT AUTO_INCREMENT PRIMARY KEY,
+  `descricao` TEXT NOT NULL,
+  `data` DATE NOT NULL,
+  `status` ENUM('Pendente', 'Concluída') NOT NULL,
+  `id_veiculo` INT NOT NULL,
+  FOREIGN KEY (`id_veiculo`) REFERENCES `Veiculo`(`id_veiculo`)
+) 
 ```
 
-## DML
+---
 
-_(Apresentar exemplos dos pedidos SQL à base de dados que demonstrem o cumprimento dos requisitos identificados. Para cada query apresentar numa breve descrição do requisito que pretende resolver e do resultado espectável.)_
+## DML
 
 ---
 
