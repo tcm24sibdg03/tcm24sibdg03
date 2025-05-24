@@ -79,6 +79,21 @@ CREATE TABLE IF NOT EXISTS `Acao_Recomendada` (
 ```sql
 INSERT INTO Cliente (nome, telefone, email)
 VALUES ('Cristiano Ronaldo', '912345678', 'cr7@mail.com');
+
+INSERT INTO Veiculo (matricula, marca, modelo, ano, km, vin, data_aquisicao, id_cliente)
+VALUES ('BI-34-MV', 'VW', 'Sirocco', 2010, 200000, 'W1234567890ABC123', '2020-05-22', 1);
+
+INSERT INTO Servico (tipo, preco)
+VALUES ('Revisão', 59.90);
+
+INSERT INTO Agendamento (data, hora, status_confirmacao, id_veiculo, id_servico)
+VALUES ('2025-05-22', '09:30:00', 'Confirmado', 1, 1);
+
+INSERT INTO Historico (notas, id_agendamento, id_veiculo, id_servico)
+VALUES ('Substituição do filtro de ar incluída.', 1, 1, 1);
+
+INSERT INTO Acao_Recomendada (descricao, data, status, id_veiculo)
+VALUES ('Trocar pastilhas de travão', '2025-05-22', 'Pendente', 1);
 ```
 
 ### Consultas (exemplos)
@@ -86,6 +101,17 @@ VALUES ('Cristiano Ronaldo', '912345678', 'cr7@mail.com');
 -- Ver agendamentos com status confirmado para uma determinada data
 SELECT * FROM Agendamento
 WHERE data = '2025-05-22' AND status_confirmacao = 'Confirmado';
+
+-- Ver o histórico de serviços de um cliente
+SELECT h.*, s.tipo, v.marca, v.modelo
+FROM Historico h
+JOIN Servico s ON h.id_servico = s.id_servico
+JOIN Veiculo v ON h.id_veiculo = v.id_veiculo
+WHERE v.id_cliente = 1;
+
+-- Ver todas as ações recomendadas com status pendente
+SELECT * FROM Acao_Recomendada
+WHERE status = 'Pendente';
 ```
 
 ---
