@@ -36,6 +36,8 @@ Todas as relações estão na 1FN porque:
 - Não há dependências transitivas nos esquemas.
 - Todos os atributos não-chave dependem **unicamente da chave primária**.
 
+Portanto, todas as relações estão em **3FN** e não há necessidade de aplicar BCNF neste caso.
+
 ---
 
 | [< Previous](REBD02.md) | [^ Main](../../README.md) | [Next >](REBD04.md) |
