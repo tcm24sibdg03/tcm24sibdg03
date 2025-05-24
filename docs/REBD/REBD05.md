@@ -75,6 +75,19 @@ CREATE TABLE IF NOT EXISTS `Acao_Recomendada` (
 
 ## DML
 
+### Inserts (exemplos)
+```sql
+INSERT INTO Cliente (nome, telefone, email)
+VALUES ('Cristiano Ronaldo', '912345678', 'cr7@mail.com');
+```
+
+### Consultas (exemplos)
+```sql
+-- Ver agendamentos com status confirmado para uma determinada data
+SELECT * FROM Agendamento
+WHERE data = '2025-05-22' AND status_confirmacao = 'Confirmado';
+```
+
 ---
 
 | [< Previous](REBD04.md) | [^ Main](../../README.md) |
