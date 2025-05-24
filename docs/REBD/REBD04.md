@@ -1,5 +1,8 @@
 # C4 : Esquema Relacional
-_(Apresentar o esquema físico da Base de Dados. Para cada relação resultante, apresente a descrição da tabela correspondente usando o exemplo apresentado.)_
+
+---
+
+## Tabelas
 
 - [Relações](#relações)
   - [Tabela_a](#tabela_a)
