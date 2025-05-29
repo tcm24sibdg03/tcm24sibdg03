@@ -15,9 +15,6 @@ DROP TABLE IF EXISTS `Veiculo`;
 DROP TABLE IF EXISTS `Cliente`;
 DROP TABLE IF EXISTS `Servico`;
 
-DROP VIEW IF EXISTS agendamentos_futuros;
-DROP VIEW IF EXISTS vista_historico_veiculo;
-
 CREATE TABLE IF NOT EXISTS `Cliente` (
    `id_cliente` INT AUTO_INCREMENT PRIMARY KEY,
    `nome` VARCHAR(100) NOT NULL,
