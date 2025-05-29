@@ -119,9 +119,9 @@ Histórico completo de um veículo com tipo de serviço e observações.
 ```sql
 CREATE VIEW vista_historico_veiculo AS
 SELECT
-    v.matricula
-    s.tipo
-    h.notas
+    v.matricula,
+    s.tipo,
+    h.notas,
     h.id_historico
 FROM Historico h
 JOIN Veiculo v ON h.id_veiculo = v.id_veiculo
