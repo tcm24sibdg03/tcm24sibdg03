@@ -8,12 +8,15 @@
 CREATE DATABASE IF NOT EXISTS autoshop;
 USE `autoshop`;
 
-DROP TABLE IF EXISTS `Cliente`;
-DROP TABLE IF EXISTS `Veiculo`;
-DROP TABLE IF EXISTS `Servico`;
-DROP TABLE IF EXISTS `Agendamento`;
 DROP TABLE IF EXISTS `Historico`;
 DROP TABLE IF EXISTS `Acao_Recomendada`;
+DROP TABLE IF EXISTS `Agendamento`;
+DROP TABLE IF EXISTS `Veiculo`;
+DROP TABLE IF EXISTS `Cliente`;
+DROP TABLE IF EXISTS `Servico`;
+
+DROP VIEW IF EXISTS agendamentos_futuros;
+DROP VIEW IF EXISTS vista_historico_veiculo;
 
 CREATE TABLE IF NOT EXISTS `Cliente` (
    `id_cliente` INT AUTO_INCREMENT PRIMARY KEY,
@@ -81,8 +84,8 @@ CREATE TABLE IF NOT EXISTS `Acao_Recomendada` (
 INSERT INTO Cliente (nome, telefone, email)
 VALUES ('Cristiano Ronaldo', '912345678', 'cr7@mail.com');
 
-INSERT INTO Veiculo (matricula, marca, modelo, ano, km, vin, data_aquisicao, id_cliente)
-VALUES ('BI-34-MV', 'VW', 'Sirocco', 2010, 200000, 'W1234567890ABC123', '2020-05-22', 1);
+INSERT INTO Veiculo (matricula, marca, modelo, ano, km, vin, id_cliente)
+VALUES ('BI-34-MV', 'VW', 'Sirocco', 2010, 200000, 'W1234567890ABC123', 1);
 
 INSERT INTO Servico (tipo, preco)
 VALUES ('Revisão', 59.90);
