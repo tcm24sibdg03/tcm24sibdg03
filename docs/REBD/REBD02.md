@@ -2,7 +2,7 @@
 
 ## Introdução
 
-<img src="../img/REBD_new.png" alt="EA Model" width="1200" />
+<img src="../img/DIA_new.png" alt="EA Model" width="1200" />
 
 > Modelo Entidade-Associação do sistema de gestão de oficina mecânica. [*desenvolvido com DiaPortable*]
 
