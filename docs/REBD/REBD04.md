@@ -75,7 +75,7 @@ Registos históricos de serviços executados, com possíveis anotações.
 
 ---
 
-### Inclui (alterar)
+### Inclui
 
 Sugestões de intervenções futuras com data e estado planeado.
 
