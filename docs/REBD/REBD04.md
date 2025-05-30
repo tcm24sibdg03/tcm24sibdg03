@@ -10,7 +10,7 @@ Regista os clientes da oficina, incluindo os seus dados de contacto.
 
 | Nome        | Descrição               | Domínio                          | Por Omissão | Automático | Nulo |
 |-------------|--------------------------|-----------------------------------|--------------|-------------|------|
-| id_cliente  | Identificador do cliente | INT, PRIMARY KEY, AUTO_INCREMENT | -            | Sim         | Não  |
+| id  | Identificador do cliente | INT, PRIMARY KEY, AUTO_INCREMENT | -            | Sim         | Não  |
 | nome        | Nome do cliente          | VARCHAR(100) NOT NULL            | -            | Não         | Não  |
 | telefone    | Número de telefone       | VARCHAR(15) NOT NULL             | -            | Não         | Não  |
 | email       | Email de contacto        | VARCHAR(100) NOT NULL            | -            | Não         | Não  |
@@ -23,7 +23,7 @@ Contém os veículos registados na oficina, associados a um cliente.
 
 | Nome        | Descrição                       | Domínio                                             | Por Omissão | Automático | Nulo |
 |-------------|----------------------------------|------------------------------------------------------|--------------|-------------|------|
-| id_veiculo  | Identificador do veículo         | INT, PRIMARY KEY, AUTO_INCREMENT                     | -            | Sim         | Não  |
+| id  | Identificador do veículo         | INT, PRIMARY KEY, AUTO_INCREMENT                     | -            | Sim         | Não  |
 | matricula   | Matrícula do veículo             | VARCHAR(15) UNIQUE NOT NULL                          | -            | Não         | Não  |
 | marca       | Marca do veículo                 | VARCHAR(50) NOT NULL                                 | -            | Não         | Não  |
 | modelo      | Modelo do veículo                | VARCHAR(50) NOT NULL                                 | -            | Não         | Não  |
@@ -40,7 +40,7 @@ Lista os tipos de serviços oferecidos pela oficina.
 
 | Nome        | Descrição              | Domínio                              | Por Omissão | Automático | Nulo |
 |-------------|-------------------------|---------------------------------------|--------------|-------------|------|
-| id_servico  | Identificador do serviço| INT, PRIMARY KEY, AUTO_INCREMENT     | -            | Sim         | Não  |
+| id  | Identificador do serviço| INT, PRIMARY KEY, AUTO_INCREMENT     | -            | Sim         | Não  |
 | tipo        | Tipo de serviço         | VARCHAR(100) NOT NULL                | -            | Não         | Não  |
 | preco       | Preço base do serviço   | DECIMAL(10,2) NOT NULL               | -            | Não         | Não  |
 
@@ -53,8 +53,8 @@ Marcações feitas para serviços a serem realizados.
 | Nome               | Descrição                         | Domínio                                          | Por Omissão | Automático | Nulo |
 |--------------------|------------------------------------|--------------------------------------------------|--------------|-------------|------|
 | id_agendamento     | Identificador da marcação          | INT, PRIMARY KEY, AUTO_INCREMENT                | -            | Sim         | Não  |
-| data               | Data da marcação                   | DATE NOT NULL                                   | CURRENT_DATE            | Não         | Não  |
-| hora               | Hora da marcação                   | TIME NOT NULL                                   | CURRENT_TIME          | Não         | Não  |
+| data               | Data da marcação                   | DATE NOT NULL                                   | CURRENT_DATE ()            | Não         | Não  |
+| hora               | Hora da marcação                   | TIME NOT NULL                                   | CURRENT_TIME ()          | Não         | Não  |
 | status_confirmacao| Estado da marcação (confirmado?)   | VARCHAR(20) NOT NULL                            | -            | Não         | Não  |
 | id_veiculo         | Veículo a ser intervencionado      | INT, FOREIGN KEY → Veiculo(id_veiculo) NOT NULL | -            | Não         | Não  |
 | id_servico         | Serviço a ser realizado            | INT, FOREIGN KEY → Servico(id_servico) NOT NULL | -            | Não         | Não  |
