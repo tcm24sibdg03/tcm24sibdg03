@@ -55,7 +55,7 @@ Marcações feitas para serviços a serem realizados.
 | id_agendamento     | Identificador da marcação          | INT, PRIMARY KEY, AUTO_INCREMENT                | -            | Sim         | Não  |
 | data               | Data da marcação                   | DATE NOT NULL                                   | CURRENT_DATE ()            | Não         | Não  |
 | hora               | Hora da marcação                   | TIME NOT NULL                                   | CURRENT_TIME ()          | Não         | Não  |
-| status_confirmacao| Estado da marcação (confirmado?)   | VARCHAR(20) NOT NULL                            | -            | Não         | Não  |
+| status | Estado da marcação (confirmado?)   | VARCHAR(20) NOT NULL                            | -            | Não         | Não  |
 | id_veiculo         | Veículo a ser intervencionado      | INT, FOREIGN KEY → Veiculo(id_veiculo) NOT NULL | -            | Não         | Não  |
 | id_servico         | Serviço a ser realizado            | INT, FOREIGN KEY → Servico(id_servico) NOT NULL | -            | Não         | Não  |
 
@@ -75,17 +75,17 @@ Registos históricos de serviços executados, com possíveis anotações.
 
 ---
 
-### Ação Recomendada
+### Inclui (alterar)
 
 Sugestões de intervenções futuras com data e estado planeado.
 
 | Nome        | Descrição                       | Domínio                                        | Por Omissão | Automático | Nulo |
 |-------------|----------------------------------|------------------------------------------------|--------------|-------------|------|
-| id_acao     | Identificador da ação            | INT, PRIMARY KEY, AUTO_INCREMENT              | -            | Sim         | Não  |
-| descricao   | Descrição da recomendação        | TEXT NOT NULL                                 | -            | Não         | Não  |
-| data        | Data prevista                    | DATE NOT NULL                                 | -            | Não         | Não  |
-| status      | Estado da recomendação           | VARCHAR(30) NOT NULL                          | -            | Não         | Não  |
-| id_veiculo  | Veículo relacionado               | INT, FOREIGN KEY → Veiculo(id_veiculo) NOT NULL | -          | Não         | Não  |
+| agendamentoId     | Referência ao agendamento            | INT, FOREIGN KEY → Agendamento(id) NOT NULL          | -            | Não         | Não  |
+| servicoId   | Referência ao serviço        | INT, FOREIGN KEY → Servico(id) NOT NULL                             | -            | Não         | Não  |
+| recomendado        | Indica se o serviço foi recomendado                    | BOOLEAN NOT NULL                                 | FALSE            | Não         | Não  |
+| executado      | Indica se o serviço foi executado           | BOOLEAN NOT NULL                          | FALSE            | Não         | Não  |
+| pendente  | Indica se o serviço ainda está pendente               | BOOLEAN NOT NULL | TRUE          | Não         | Não  |
 
 ---
 
@@ -97,19 +97,19 @@ Consultar todos os agendamentos futuros, juntamente com os dados do cliente, ve�
 ```sql
 CREATE VIEW agendamentos_futuros AS
 SELECT 
-    a.id_agendamento,
+    a.id,
     a.data,
     a.hora,
-    a.status_confirmacao,
+    a.status,
     c.nome AS cliente,
     v.marca,
     v.modelo,
     s.tipo AS tipo_servico,
     s.preco
 FROM Agendamento a
-JOIN Veiculo v ON a.id_veiculo = v.id_veiculo
-JOIN Cliente c ON v.id_cliente = c.id_cliente
-JOIN Servico s ON a.id_servico = s.id_servico
+JOIN Veiculo v ON a.veiculoId = v.Id
+JOIN Cliente c ON v.clienteId = c.Id
+JOIN Servico s ON a.servicoId = s.Id
 WHERE a.data >= CURDATE();
 ```
 
@@ -122,10 +122,10 @@ SELECT
     v.matricula,
     s.tipo,
     h.notas,
-    h.id_historico
+    h.Id
 FROM Historico h
-JOIN Veiculo v ON h.id_veiculo = v.id_veiculo
-JOIN Servico s ON h.id_servico = s.id_servico;
+JOIN Veiculo v ON h.veiculoId = v.Id
+JOIN Servico s ON h.servicoId = s.Id;
 ```
 
 ---
