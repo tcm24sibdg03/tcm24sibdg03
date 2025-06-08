@@ -23,7 +23,7 @@ A entidade **Serviço** define os tipos de serviços que a oficina oferece. Cada
 A entidade **Agendamento** representa a marcação de um serviço para um determinado veículo. Inclui `id`, `data`, `hora` e `status`, além das referências ao veículo e ao serviço agendado.
 
 ### Histórico
-A entidade **Histórico** regista a execução efetiva de serviços previamente agendados. Inclui `id`, `notas`, e chaves estrangeiras que referem `agendamentoId`, `veiculoId` e `servicoId`.
+A entidade **Histórico** regista a execução efetiva de serviços previamente agendados. Inclui `id`, `notas`, e chaves estrangeiras que referem `agendamentoId` e `veiculoId`.
 
 ### Inclui
 Associação **Inclui** entre agendamentos e serviços, com indicação se o serviço foi recomendado `recomendados`, executado `executado` ou ainda está pendente `pendente`.
@@ -37,7 +37,6 @@ As seguintes regras de negócio foram identificadas como necessárias à integri
 - Um veículo não pode ter mais do que um serviço agendado na mesma data e hora.
 - Não é permitido eliminar registos de histórico de serviços – o histórico deve ser permanente.
 - As ações recomendadas devem estar sempre associadas a um veículo e conter uma descrição e um estado (pendente ou concluída).
-- Cada serviço realizado deve constar obrigatoriamente no histórico de veículo.
 - Um agendamento só pode existir se houver um veículo associado previamente registado.
 - O status de confirmação de um agendamento deve ser atualizado antes da data do serviço.
 

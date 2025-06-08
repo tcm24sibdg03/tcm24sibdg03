@@ -71,7 +71,6 @@ Registos históricos de serviços executados, com possíveis anotações.
 | notas        | Observações sobre o serviço      | TEXT                                                  | -            | Não         | Sim  |
 | id_agendamento | Referência à marcação anterior | INT, FOREIGN KEY → Agendamento(id_agendamento)       | -            | Não         | Não  |
 | id_veiculo   | Veículo intervencionado          | INT, FOREIGN KEY → Veiculo(id_veiculo)               | -            | Não         | Não  |
-| id_servico   | Serviço realizado                | INT, FOREIGN KEY → Servico(id_servico)               | -            | Não         | Não  |
 
 ---
 

@@ -51,10 +51,8 @@ CREATE TABLE IF NOT EXISTS `Historico` (
    `notas` TEXT,
    `agendamentoId` INT NOT NULL,
    `veiculoId` INT NOT NULL,
-   `servicoId` INT NOT NULL,
    FOREIGN KEY (`agendamentoId`) REFERENCES `Agendamento`(`id`),
-   FOREIGN KEY (`veiculoId`) REFERENCES `Veiculo`(`id`),
-   FOREIGN KEY (`servicoId`) REFERENCES `Servico`(`id`)
+   FOREIGN KEY (`veiculoId`) REFERENCES `Veiculo`(`id`)
 );
 
 CREATE TABLE IF NOT EXISTS `Inclui` (
@@ -265,66 +263,66 @@ INSERT INTO Agendamento (data, hora, status, veiculoId, servicoId)
 VALUES ('2025-06-26', '8:00:00', 'Confirmado', 1, 3);
 
 -- Inserts Historico
-INSERT INTO Historico (notas, agendamentoId, veiculoId, servicoId)
-VALUES ('Nota do histórico 1', 2, 2, 2);
-INSERT INTO Historico (notas, agendamentoId, veiculoId, servicoId)
-VALUES ('Nota do histórico 2', 3, 3, 3);
-INSERT INTO Historico (notas, agendamentoId, veiculoId, servicoId)
-VALUES ('Nota do histórico 3', 4, 4, 4);
-INSERT INTO Historico (notas, agendamentoId, veiculoId, servicoId)
-VALUES ('Nota do histórico 4', 5, 5, 1);
-INSERT INTO Historico (notas, agendamentoId, veiculoId, servicoId)
-VALUES ('Nota do histórico 5', 6, 6, 2);
-INSERT INTO Historico (notas, agendamentoId, veiculoId, servicoId)
-VALUES ('Nota do histórico 6', 7, 7, 3);
-INSERT INTO Historico (notas, agendamentoId, veiculoId, servicoId)
-VALUES ('Nota do histórico 7', 8, 8, 4);
-INSERT INTO Historico (notas, agendamentoId, veiculoId, servicoId)
-VALUES ('Nota do histórico 8', 9, 9, 1);
-INSERT INTO Historico (notas, agendamentoId, veiculoId, servicoId)
-VALUES ('Nota do histórico 9', 10, 10, 2);
-INSERT INTO Historico (notas, agendamentoId, veiculoId, servicoId)
-VALUES ('Nota do histórico 10', 11, 11, 3);
-INSERT INTO Historico (notas, agendamentoId, veiculoId, servicoId)
-VALUES ('Nota do histórico 11', 12, 12, 4);
-INSERT INTO Historico (notas, agendamentoId, veiculoId, servicoId)
-VALUES ('Nota do histórico 12', 13, 13, 1);
-INSERT INTO Historico (notas, agendamentoId, veiculoId, servicoId)
-VALUES ('Nota do histórico 13', 14, 14, 2);
-INSERT INTO Historico (notas, agendamentoId, veiculoId, servicoId)
-VALUES ('Nota do histórico 14', 15, 15, 3);
-INSERT INTO Historico (notas, agendamentoId, veiculoId, servicoId)
-VALUES ('Nota do histórico 15', 16, 16, 4);
-INSERT INTO Historico (notas, agendamentoId, veiculoId, servicoId)
-VALUES ('Nota do histórico 16', 17, 17, 1);
-INSERT INTO Historico (notas, agendamentoId, veiculoId, servicoId)
-VALUES ('Nota do histórico 17', 18, 18, 2);
-INSERT INTO Historico (notas, agendamentoId, veiculoId, servicoId)
-VALUES ('Nota do histórico 18', 19, 19, 3);
-INSERT INTO Historico (notas, agendamentoId, veiculoId, servicoId)
-VALUES ('Nota do histórico 19', 20, 20, 4);
-INSERT INTO Historico (notas, agendamentoId, veiculoId, servicoId)
-VALUES ('Nota do histórico 20', 21, 21, 1);
-INSERT INTO Historico (notas, agendamentoId, veiculoId, servicoId)
-VALUES ('Nota do histórico 21', 22, 22, 2);
-INSERT INTO Historico (notas, agendamentoId, veiculoId, servicoId)
-VALUES ('Nota do histórico 22', 23, 23, 3);
-INSERT INTO Historico (notas, agendamentoId, veiculoId, servicoId)
-VALUES ('Nota do histórico 23', 24, 24, 4);
-INSERT INTO Historico (notas, agendamentoId, veiculoId, servicoId)
-VALUES ('Nota do histórico 24', 25, 25, 1);
-INSERT INTO Historico (notas, agendamentoId, veiculoId, servicoId)
-VALUES ('Nota do histórico 25', 26, 26, 2);
-INSERT INTO Historico (notas, agendamentoId, veiculoId, servicoId)
-VALUES ('Nota do histórico 26', 27, 27, 3);
-INSERT INTO Historico (notas, agendamentoId, veiculoId, servicoId)
-VALUES ('Nota do histórico 27', 28, 28, 4);
-INSERT INTO Historico (notas, agendamentoId, veiculoId, servicoId)
-VALUES ('Nota do histórico 28', 29, 29, 1);
-INSERT INTO Historico (notas, agendamentoId, veiculoId, servicoId)
-VALUES ('Nota do histórico 29', 30, 30, 2);
-INSERT INTO Historico (notas, agendamentoId, veiculoId, servicoId)
-VALUES ('Nota do histórico 30', 1, 1, 3);
+INSERT INTO Historico (notas, agendamentoId, veiculoId)
+VALUES ('Nota do histórico 1', 2, 2);
+INSERT INTO Historico (notas, agendamentoId, veiculoId)
+VALUES ('Nota do histórico 2', 3, 3);
+INSERT INTO Historico (notas, agendamentoId, veiculoId)
+VALUES ('Nota do histórico 3', 4, 4);
+INSERT INTO Historico (notas, agendamentoId, veiculoId)
+VALUES ('Nota do histórico 4', 5, 5);
+INSERT INTO Historico (notas, agendamentoId, veiculoId)
+VALUES ('Nota do histórico 5', 6, 6);
+INSERT INTO Historico (notas, agendamentoId, veiculoId)
+VALUES ('Nota do histórico 6', 7, 7);
+INSERT INTO Historico (notas, agendamentoId, veiculoId)
+VALUES ('Nota do histórico 7', 8, 8);
+INSERT INTO Historico (notas, agendamentoId, veiculoId)
+VALUES ('Nota do histórico 8', 9, 9);
+INSERT INTO Historico (notas, agendamentoId, veiculoId)
+VALUES ('Nota do histórico 9', 10, 10);
+INSERT INTO Historico (notas, agendamentoId, veiculoId)
+VALUES ('Nota do histórico 10', 11, 11);
+INSERT INTO Historico (notas, agendamentoId, veiculoId)
+VALUES ('Nota do histórico 11', 12, 12);
+INSERT INTO Historico (notas, agendamentoId, veiculoId)
+VALUES ('Nota do histórico 12', 13, 13);
+INSERT INTO Historico (notas, agendamentoId, veiculoId)
+VALUES ('Nota do histórico 13', 14, 14);
+INSERT INTO Historico (notas, agendamentoId, veiculoId)
+VALUES ('Nota do histórico 14', 15, 15);
+INSERT INTO Historico (notas, agendamentoId, veiculoId)
+VALUES ('Nota do histórico 15', 16, 16);
+INSERT INTO Historico (notas, agendamentoId, veiculoId)
+VALUES ('Nota do histórico 16', 17, 17);
+INSERT INTO Historico (notas, agendamentoId, veiculoId)
+VALUES ('Nota do histórico 17', 18, 18);
+INSERT INTO Historico (notas, agendamentoId, veiculoId)
+VALUES ('Nota do histórico 18', 19, 19);
+INSERT INTO Historico (notas, agendamentoId, veiculoId)
+VALUES ('Nota do histórico 19', 20, 20);
+INSERT INTO Historico (notas, agendamentoId, veiculoId)
+VALUES ('Nota do histórico 20', 21, 21);
+INSERT INTO Historico (notas, agendamentoId, veiculoId)
+VALUES ('Nota do histórico 21', 22, 22);
+INSERT INTO Historico (notas, agendamentoId, veiculoId)
+VALUES ('Nota do histórico 22', 23, 23);
+INSERT INTO Historico (notas, agendamentoId, veiculoId)
+VALUES ('Nota do histórico 23', 24, 24);
+INSERT INTO Historico (notas, agendamentoId, veiculoId)
+VALUES ('Nota do histórico 24', 25, 25);
+INSERT INTO Historico (notas, agendamentoId, veiculoId)
+VALUES ('Nota do histórico 25', 26, 26);
+INSERT INTO Historico (notas, agendamentoId, veiculoId)
+VALUES ('Nota do histórico 26', 27, 27);
+INSERT INTO Historico (notas, agendamentoId, veiculoId)
+VALUES ('Nota do histórico 27', 28, 28);
+INSERT INTO Historico (notas, agendamentoId, veiculoId)
+VALUES ('Nota do histórico 28', 29, 29);
+INSERT INTO Historico (notas, agendamentoId, veiculoId)
+VALUES ('Nota do histórico 29', 30, 30);
+INSERT INTO Historico (notas, agendamentoId, veiculoId)
+VALUES ('Nota do histórico 30', 1, 1);
 
 -- Inserts Inclui
 INSERT INTO Inclui (agendamentoId, servicoId, recomendado, executado, pendente)
@@ -363,12 +361,12 @@ JOIN Servico s ON a.servicoId = s.Id;
 CREATE VIEW vista_historico_veiculo AS
 SELECT
     v.matricula,
-    s.tipo,
+    a.status,
     h.notas,
     h.Id
 FROM Historico h
 JOIN Veiculo v ON h.veiculoId = v.Id
-JOIN Servico s ON h.servicoId = s.Id;
+JOIN Agendamento a ON h.agendamentoId = a.Id;
 
 -- agendamentos_futuros
 

@@ -51,10 +51,8 @@ CREATE TABLE IF NOT EXISTS `Historico` (
    `notas` TEXT,
    `agendamentoId` INT NOT NULL,
    `veiculoId` INT NOT NULL,
-   `servicoId` INT NOT NULL,
    FOREIGN KEY (`agendamentoId`) REFERENCES `Agendamento`(`id`),
-   FOREIGN KEY (`veiculoId`) REFERENCES `Veiculo`(`id`),
-   FOREIGN KEY (`servicoId`) REFERENCES `Servico`(`id`)
+   FOREIGN KEY (`veiculoId`) REFERENCES `Veiculo`(`id`)
 );
 
 CREATE TABLE IF NOT EXISTS `Inclui` (
@@ -95,11 +93,22 @@ SELECT * FROM Agendamento
 WHERE data = '2025-05-22' AND status = 'Confirmado';
 
 -- Ver o histórico de serviços de um cliente
-SELECT h.*, s.tipo, v.marca, v.modelo
+SELECT 
+  h.id AS id_historico,
+  h.notas,
+  a.id AS id_agendamento,
+  a.data,
+  a.hora,
+  s.tipo AS servico,
+  v.marca,
+  v.modelo
 FROM Historico h
-JOIN Servico s ON h.servicoId = s.Id
-JOIN Veiculo v ON h.veiculoId = v.Id
-WHERE v.clienteId = 1;
+JOIN Agendamento a ON h.agendamentoId = a.id
+JOIN Inclui i ON i.agendamentoId = a.id
+JOIN Servico s ON s.id = i.servicoId
+JOIN Veiculo v ON v.id = h.veiculoId
+WHERE v.clienteId = 1
+ORDER BY a.data, a.hora;
 
 -- Vistas
 
@@ -123,9 +132,9 @@ WHERE a.data >= CURDATE();
 CREATE VIEW vista_historico_veiculo AS
 SELECT
     v.matricula,
-    s.tipo,
+    a.status,
     h.notas,
     h.Id
 FROM Historico h
 JOIN Veiculo v ON h.veiculoId = v.Id
-JOIN Servico s ON h.servicoId = s.Id;
+JOIN Agendamento a ON h.agendamentoId = a.Id;

@@ -18,7 +18,7 @@ Com base no modelo entidade-associação, derivam-se as seguintes relações:
 **Agendamento**(id_agendamento PK, data, hora, status_confirmacao, #id_veiculo → Veiculo, #id_servico → Servico)
 - **DF4:** id_agendamento → data, hora, status_confirmacao, id_veiculo, id_servico
 
-**Historico**(id_historico PK, notas, #id_veiculo → Veiculo, #id_servico → Servico, #id_agendamento → Agendamento)
+**Historico**(id_historico PK, notas, #id_veiculo → Veiculo, #id_agendamento → Agendamento)
 - **DF5:** id_historico → notas, id_agendamento, id_veiculo, id_servico
 
 **Inclui**(agendamentoId PK, servicoId PK, recomendado, executado, pendente, #agendamentoId → Agendamento, #servicoId → Servico)
