@@ -17,7 +17,7 @@ A entidade **Cliente** representa os indivíduos que contratam os serviços da o
 A entidade **Veículo** representa os automóveis registados na oficina. Os atributos incluem `id`, `matricula`, `marca`, `modelo`, `ano`, `km` e `vin`. Cada veículo pertence exclusivamente a um cliente.
 
 ### Serviço
-A entidade **Serviço** define os tipos de serviços que a oficina oferece. Cada serviço tem um `id`, uma descrição (`tipo`) e um `preco` associado. Esta entidade é usada como referência nos agendamentos e nos registos de histórico.
+A entidade **Serviço** define os tipos de serviços que a oficina oferece. Cada serviço tem um `id`, uma descrição (`tipo`) e um `preco` associado. Esta entidade é usada como referência nos agendamentos.
 
 ### Agendamento
 A entidade **Agendamento** representa a marcação de um serviço para um determinado veículo. Inclui `id`, `data`, `hora` e `status`, além das referências ao veículo e ao serviço agendado.

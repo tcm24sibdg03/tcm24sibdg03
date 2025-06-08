@@ -1,12 +1,5 @@
 import {Entity, model, property} from '@loopback/repository';
 
-export enum TipoServico {
-  REVISAO = 'Revisão',
-  TROCA_OLEO = 'Troca de Óleo',
-  INSPECAO = 'Inspeção',
-  OUTRO = 'Outro',
-}
-
 @model()
 export class Servico extends Entity {
   @property({
@@ -19,11 +12,8 @@ export class Servico extends Entity {
   @property({
     type: 'string',
     required: true,
-    jsonSchema: {
-      enum: Object.values(TipoServico),
-    },
   })
-  tipo: TipoServico;
+  tipo: string;
 
   @property({
     type: 'number',

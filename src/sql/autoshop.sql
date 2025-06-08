@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `Veiculo` (
 
 CREATE TABLE IF NOT EXISTS `Servico` (
    `id` INT AUTO_INCREMENT PRIMARY KEY,
-   `tipo` ENUM('Revisão', 'Troca de Óleo', 'Inspeção', 'Outro') NOT NULL,
+   `tipo` VARCHAR(100) NOT NULL,
    `preco` DECIMAL(10,2) NOT NULL
 );
 

@@ -2,7 +2,12 @@ import {Entity, model, property, belongsTo} from '@loopback/repository';
 import {Agendamento} from './agendamento.model';
 import {Servico} from './servico.model';
 
-@model()
+@model({
+  settings: {
+    idInjection: false,
+    hiddenProperties: ['servicoIdNav', 'agendamentoIdNav', 'id']
+  }
+})
 export class Inclui extends Entity {
 
   // Este campo 'id' é técnico e apenas necessário para o LoopBack executar o migrate()
@@ -10,8 +15,8 @@ export class Inclui extends Entity {
 
   @property({
   type: 'number',
-  id: true,
   generated: true,
+  persist: false
   })
   id?: number;
 
@@ -33,12 +38,17 @@ export class Inclui extends Entity {
   })
   pendente?: boolean;
 
-  @belongsTo(() => Agendamento, {name: 'agendamento'}, {required: true})
+  @property({type: 'number', id: true})
   agendamentoId: number;
 
-  @belongsTo(() => Servico, {name: 'servico'}, {required: true})
+  @property({type: 'number', id: true})
   servicoId: number;
 
+  @belongsTo(() => Agendamento, {name: 'agendamento'})
+  agendamentoIdNav?: number;
+
+  @belongsTo(() => Servico, {name: 'servico'})
+  servicoIdNav?: number;
 
   constructor(data?: Partial<Inclui>) {
     super(data);

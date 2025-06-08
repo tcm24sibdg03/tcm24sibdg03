@@ -19,6 +19,14 @@ Uma oficina mecânica enfrenta desafios significativos na gestão de clientes, v
 
 ---
 
+## Code
+
+- `autoshop-api/` — source code of the API (LoopBack 4)
+- `postman/` — Postman collection with all API requests
+- `sql/` — contains both the original `.sql` file and the migrated version
+
+---
+
 ## Report
 - located in the `docs` folder
 - [REI](docs/REI/REI00.md)

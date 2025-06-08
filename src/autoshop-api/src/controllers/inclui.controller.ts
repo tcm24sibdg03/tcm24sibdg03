@@ -91,6 +91,9 @@ export class IncluiController {
       throw new HttpErrors.NotFound('Serviço não encontrado para este agendamento.');
     }
 
-    await this.incluiRepository.updateById({agendamentoId, servicoId} as any, estados);
-  }
+  await this.incluiRepository.updateAll(estados, {
+    agendamentoId,
+    servicoId
+  });
+}
 }
