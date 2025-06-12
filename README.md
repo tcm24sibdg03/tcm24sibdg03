@@ -36,8 +36,8 @@ Uma oficina mecânica enfrenta desafios significativos na gestão de clientes, v
 ---
 
 ## Technologies
-- Docker
-- NodeJS
+- Node.js
+- LoopBack 4
 - MySQL
 - Postman
 
