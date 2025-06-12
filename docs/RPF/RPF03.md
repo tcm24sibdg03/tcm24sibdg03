@@ -18,11 +18,11 @@ Com base no modelo entidade-associação, derivam-se as seguintes relações:
 **Agendamento**(id_agendamento PK, data, hora, status_confirmacao, #id_veiculo → Veiculo, #id_servico → Servico)
 - **DF4:** id_agendamento → data, hora, status_confirmacao, id_veiculo, id_servico
 
-**Historico**(id_historico PK, notas, #id_veiculo → Veiculo, #id_servico → Servico, #id_agendamento → Agendamento)
+**Historico**(id_historico PK, notas, #id_veiculo → Veiculo, #id_agendamento → Agendamento)
 - **DF5:** id_historico → notas, id_agendamento, id_veiculo, id_servico
 
-**Acao_Recomendada**(id_acao PK, descricao, data, status, #id_veiculo → Veiculo)
-- **DF6:** id_acao → descricao, data, status, id_veiculo
+**Inclui**(agendamentoId PK, servicoId PK, recomendado, executado, pendente, #agendamentoId → Agendamento, #servicoId → Servico)
+- **DF6:** agendamentoId, servicoId → recomendado, executado, pendente
 
 ---
 
@@ -35,7 +35,7 @@ Todas as relações estão na 1FN porque:
 
 ### 2FN - Segunda Forma Normal
 - Todas as tabelas têm **chave primária simples**.
-- Nenhum atributo não-chave depende de parte de uma chave composta (pois nenhuma tabela tem chave composta).
+- Nenhum atributo não-chave depende de parte de uma chave composta.
 → Portanto, todas as relações estão em 2FN.
 
 ### 3FN - Terceira Forma Normal
@@ -46,5 +46,5 @@ Portanto, todas as relações estão em **3FN** e não há necessidade de aplica
 
 ---
 
-| [< Previous](REBD02.md) | [^ Main](../../README.md) | [Next >](REBD04.md) |
+| [< Previous](RPF02.md) | [^ Main](../../README.md) | [Next >](RPF04.md) |
 |:----------------------------------:|:----------------------------------:|:----------------------------------:|
