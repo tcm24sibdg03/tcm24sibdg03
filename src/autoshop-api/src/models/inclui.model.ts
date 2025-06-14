@@ -5,7 +5,7 @@ import {Servico} from './servico.model';
 @model({
   settings: {
     idInjection: false,
-    hiddenProperties: ['servicoIdNav', 'agendamentoIdNav', 'id']
+    hiddenProperties: ['servicoRef', 'agendamentoRef', 'id']
   }
 })
 export class Inclui extends Entity {
@@ -45,10 +45,10 @@ export class Inclui extends Entity {
   servicoId: number;
 
   @belongsTo(() => Agendamento, {name: 'agendamento'})
-  agendamentoIdNav?: number;
+  agendamentoRef?: number;
 
   @belongsTo(() => Servico, {name: 'servico'})
-  servicoIdNav?: number;
+  servicoRef?: number;
 
   constructor(data?: Partial<Inclui>) {
     super(data);

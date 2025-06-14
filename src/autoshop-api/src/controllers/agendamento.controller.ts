@@ -70,10 +70,10 @@ export class AgendamentoController {
       },
     },
   })
-  async find(
-    @param.filter(Agendamento) filter?: Filter<Agendamento>,
-  ): Promise<Agendamento[]> {
-    return this.agendamentoRepository.find(filter);
+  async find(): Promise<Agendamento[]> {
+    return this.agendamentoRepository.find({
+      include: [{relation: 'servicos'}],
+    });
   }
 
   @patch('/agendamentos')
@@ -106,10 +106,12 @@ export class AgendamentoController {
   })
   async findById(
     @param.path.number('id') id: number,
-    @param.filter(Agendamento, {exclude: 'where'}) filter?: FilterExcludingWhere<Agendamento>
   ): Promise<Agendamento> {
-    return this.agendamentoRepository.findById(id, filter);
+    return this.agendamentoRepository.findById(id, {
+      include: [{relation: 'servicos'}],
+    });
   }
+
 
   @patch('/agendamentos/{id}')
   @response(204, {

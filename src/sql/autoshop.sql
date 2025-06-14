@@ -372,17 +372,19 @@ JOIN Agendamento a ON h.agendamentoId = a.Id;
 
 CREATE VIEW agendamentos_futuros AS
 SELECT 
-    a.id,
+    a.id AS agendamento_id,
     a.data,
     a.hora,
     a.status,
-    c.nome AS cliente,
-    v.marca,
-    v.modelo,
-    s.tipo AS tipo_servico,
-    s.preco
+    v.matricula,
+    c.nome AS nome_cliente,
+    s.nome AS nome_servico,
+    i.pendente,
+    i.recomendado,
+    i.executado
 FROM Agendamento a
-JOIN Veiculo v ON a.veiculoId = v.Id
-JOIN Cliente c ON v.clienteId = c.Id
-JOIN Servico s ON a.servicoId = s.Id
-WHERE a.data >= CURDATE();
+JOIN Veiculo v ON a.veiculoId = v.id
+JOIN Cliente c ON v.clienteId = c.id
+JOIN Inclui i ON a.id = i.agendamentoId
+JOIN Servico s ON i.servicoId = s.id
+WHERE a.data >= CURRENT_DATE;

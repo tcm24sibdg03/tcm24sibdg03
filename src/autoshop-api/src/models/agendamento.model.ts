@@ -1,4 +1,6 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, hasMany,} from '@loopback/repository';
+import {Servico} from './servico.model';
+import {Inclui} from './inclui.model';
 
 export enum StatusAgendamento {
   PENDENTE = 'Pendente',
@@ -36,19 +38,20 @@ export class Agendamento extends Entity {
   })
   status: StatusAgendamento;
 
-
   @property({
     type: 'number',
     required: true,
   })
   veiculoId: number;
 
-  @property({
-    type: 'number',
-    required: true,
+  @hasMany(() => Servico, {
+    through: {
+      model: () => Inclui,
+      keyFrom: 'agendamentoId',
+      keyTo: 'servicoId',
+    },
   })
-  servicoId: number;
-
+  servicos: Servico[];
 
   constructor(data?: Partial<Agendamento>) {
     super(data);

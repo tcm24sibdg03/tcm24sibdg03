@@ -6,6 +6,9 @@
 - [Normalização](RPF03.md)
 - [Esquema-Relacional](RPF04.md)
 - [SQL](RPF05.md)
+- [Loopback API](RPF06.md)
+- [SQL vs Migrate](RPF07.md)
+- [Postman](RPF08.md)
 
 ---
 
