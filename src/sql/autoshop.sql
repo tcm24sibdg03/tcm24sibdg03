@@ -10,6 +10,9 @@ DROP TABLE IF EXISTS `Veiculo`;
 DROP TABLE IF EXISTS `Cliente`;
 DROP TABLE IF EXISTS `Servico`;
 
+DROP VIEW IF EXISTS `veiculos_com_agendamentos_pendentes`;
+DROP VIEW IF EXISTS `vista_historico_veiculo`;
+
 CREATE TABLE IF NOT EXISTS `Cliente` (
    `id` INT AUTO_INCREMENT PRIMARY KEY,
    `nome` VARCHAR(100) NOT NULL,
@@ -348,13 +351,19 @@ VALUES (10, 3, TRUE, FALSE, TRUE);
 
 -- Vistas
 
--- veiculos com servicos
+-- veiculos com agendamentos
 
-CREATE VIEW veiculos_com_servicos AS
-SELECT v.Id, v.matricula, v.marca, v.modelo, s.tipo AS servico, a.data, a.status
+CREATE VIEW veiculos_com_agendamentos_pendentes AS
+SELECT 
+  v.id,
+  v.matricula,
+  v.marca,
+  v.modelo,
+  a.data,
+  a.status
 FROM Veiculo v
-JOIN Agendamento a ON v.Id = a.veiculoId
-JOIN Servico s ON a.servicoId = s.Id;
+JOIN Agendamento a ON v.id = a.veiculoId
+WHERE a.status = 'Pendente';
 
 -- vista_historico_veiculo
 
@@ -367,24 +376,3 @@ SELECT
 FROM Historico h
 JOIN Veiculo v ON h.veiculoId = v.Id
 JOIN Agendamento a ON h.agendamentoId = a.Id;
-
--- agendamentos_futuros
-
-CREATE VIEW agendamentos_futuros AS
-SELECT 
-    a.id AS agendamento_id,
-    a.data,
-    a.hora,
-    a.status,
-    v.matricula,
-    c.nome AS nome_cliente,
-    s.nome AS nome_servico,
-    i.pendente,
-    i.recomendado,
-    i.executado
-FROM Agendamento a
-JOIN Veiculo v ON a.veiculoId = v.id
-JOIN Cliente c ON v.clienteId = c.id
-JOIN Inclui i ON a.id = i.agendamentoId
-JOIN Servico s ON i.servicoId = s.id
-WHERE a.data >= CURRENT_DATE;

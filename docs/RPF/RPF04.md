@@ -92,28 +92,22 @@ Sugestões de intervenções futuras com data e estado planeado.
 
 ## Vista SQL
 
-### agendamentos_futuros
-Consultar todos os agendamentos futuros, juntamente com os dados do cliente, veículo e serviço.
+### vista_veiculos_com_agendamentos
 
 ```sql
-CREATE VIEW agendamentos_futuros AS
+CREATE VIEW veiculos_com_agendamentos_pendentes AS
 SELECT 
-    a.id AS agendamento_id,
-    a.data,
-    a.hora,
-    a.status,
-    v.matricula,
-    c.nome AS nome_cliente,
-    s.nome AS nome_servico,
-    i.pendente,
-    i.recomendado,
-    i.executado
-FROM Agendamento a
-JOIN Veiculo v ON a.veiculoId = v.id
-JOIN Cliente c ON v.clienteId = c.id
-JOIN Inclui i ON a.id = i.agendamentoId
-JOIN Servico s ON i.servicoId = s.id
-WHERE a.data >= CURRENT_DATE;
+  v.id,
+  v.matricula,
+  v.marca,
+  v.modelo,
+  s.tipo AS servico,
+  a.data,
+  a.status
+FROM Veiculo v
+JOIN Agendamento a ON v.id = a.veiculoId
+JOIN Servico s ON a.servicoId = s.id
+WHERE a.status = 'Pendente';
 ```
 
 ### vista_historico_veiculo

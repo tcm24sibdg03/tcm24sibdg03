@@ -28,30 +28,9 @@ CREATE TABLE `agendamento` (
   `hora` varchar(512) NOT NULL,
   `status` varchar(512) NOT NULL,
   `veiculoId` int NOT NULL,
-  `servicoId` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Temporary view structure for view `agendamentos_futuros`
---
-
-DROP TABLE IF EXISTS `agendamentos_futuros`;
-/*!50001 DROP VIEW IF EXISTS `agendamentos_futuros`*/;
-SET @saved_cs_client     = @@character_set_client;
-/*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `agendamentos_futuros` AS SELECT 
- 1 AS `id`,
- 1 AS `data`,
- 1 AS `hora`,
- 1 AS `status`,
- 1 AS `cliente`,
- 1 AS `marca`,
- 1 AS `modelo`,
- 1 AS `tipo_servico`,
- 1 AS `preco`*/;
-SET character_set_client = @saved_cs_client;
 
 --
 -- Table structure for table `cliente`
@@ -66,7 +45,7 @@ CREATE TABLE `cliente` (
   `telefone` varchar(512) NOT NULL,
   `email` varchar(512) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -99,9 +78,10 @@ CREATE TABLE `inclui` (
   `executado` tinyint(1) DEFAULT '0',
   `pendente` tinyint(1) DEFAULT '1',
   `id` int DEFAULT NULL,
-  `agendamentoIdNav` int DEFAULT NULL,
-  `servicoIdNav` int DEFAULT NULL,
-  PRIMARY KEY (`agendamentoId`,`servicoId`)
+  `agendamentoRef` int DEFAULT NULL,
+  `servicoRef` int DEFAULT NULL,
+  PRIMARY KEY (`agendamentoId`,`servicoId`),
+  KEY `servicoId` (`servicoId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -117,7 +97,7 @@ CREATE TABLE `servico` (
   `tipo` varchar(512) NOT NULL,
   `preco` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -137,23 +117,22 @@ CREATE TABLE `veiculo` (
   `vin` varchar(512) NOT NULL,
   `clienteId` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Temporary view structure for view `veiculos_com_servicos`
+-- Temporary view structure for view `veiculos_com_agendamentos_pendentes`
 --
 
-DROP TABLE IF EXISTS `veiculos_com_servicos`;
-/*!50001 DROP VIEW IF EXISTS `veiculos_com_servicos`*/;
+DROP TABLE IF EXISTS `veiculos_com_agendamentos_pendentes`;
+/*!50001 DROP VIEW IF EXISTS `veiculos_com_agendamentos_pendentes`*/;
 SET @saved_cs_client     = @@character_set_client;
 /*!50503 SET character_set_client = utf8mb4 */;
-/*!50001 CREATE VIEW `veiculos_com_servicos` AS SELECT 
- 1 AS `Id`,
+/*!50001 CREATE VIEW `veiculos_com_agendamentos_pendentes` AS SELECT 
+ 1 AS `id`,
  1 AS `matricula`,
  1 AS `marca`,
  1 AS `modelo`,
- 1 AS `servico`,
  1 AS `data`,
  1 AS `status`*/;
 SET character_set_client = @saved_cs_client;
@@ -174,10 +153,10 @@ SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = @saved_cs_client;
 
 --
--- Final view structure for view `agendamentos_futuros`
+-- Final view structure for view `veiculos_com_agendamentos_pendentes`
 --
 
-/*!50001 DROP VIEW IF EXISTS `agendamentos_futuros`*/;
+/*!50001 DROP VIEW IF EXISTS `veiculos_com_agendamentos_pendentes`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
 /*!50001 SET @saved_col_connection     = @@collation_connection */;
@@ -186,25 +165,7 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `agendamentos_futuros` AS select `a`.`id` AS `id`,`a`.`data` AS `data`,`a`.`hora` AS `hora`,`a`.`status` AS `status`,`c`.`nome` AS `cliente`,`v`.`marca` AS `marca`,`v`.`modelo` AS `modelo`,`s`.`tipo` AS `tipo_servico`,`s`.`preco` AS `preco` from (((`agendamento` `a` join `veiculo` `v` on((`a`.`veiculoId` = `v`.`id`))) join `cliente` `c` on((`v`.`clienteId` = `c`.`id`))) join `servico` `s` on((`a`.`servicoId` = `s`.`id`))) where (`a`.`data` >= curdate()) */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
-
---
--- Final view structure for view `veiculos_com_servicos`
---
-
-/*!50001 DROP VIEW IF EXISTS `veiculos_com_servicos`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb4 */;
-/*!50001 SET character_set_results     = utf8mb4 */;
-/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
-/*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `veiculos_com_servicos` AS select `v`.`id` AS `Id`,`v`.`matricula` AS `matricula`,`v`.`marca` AS `marca`,`v`.`modelo` AS `modelo`,`s`.`tipo` AS `servico`,`a`.`data` AS `data`,`a`.`status` AS `status` from ((`veiculo` `v` join `agendamento` `a` on((`v`.`id` = `a`.`veiculoId`))) join `servico` `s` on((`a`.`servicoId` = `s`.`id`))) */;
+/*!50001 VIEW `veiculos_com_agendamentos_pendentes` AS select `v`.`id` AS `id`,`v`.`matricula` AS `matricula`,`v`.`marca` AS `marca`,`v`.`modelo` AS `modelo`,`a`.`data` AS `data`,`a`.`status` AS `status` from (`veiculo` `v` join `agendamento` `a` on((`v`.`id` = `a`.`veiculoId`))) where (`a`.`status` = 'Pendente') */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -236,4 +197,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-06-08 18:50:58
+-- Dump completed on 2025-06-14 12:22:20
