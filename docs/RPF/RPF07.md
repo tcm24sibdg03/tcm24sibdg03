@@ -22,7 +22,7 @@ Durante o desenvolvimento, foram encontradas várias diferenças entre a estrutu
 
 | SQL print | Loopback Migrate Print |
 |-------|-------|
-| <img src="../img/print-sql-1.png" alt="sql-1" width="500" /> | <img src="../img/print-migrate-1.png" alt="migrate-1" width="500" /> |
+| <img src="../img/print-sql-1.png" alt="sql-1" width="550" /> | <img src="../img/print-migrate-1.png" alt="migrate-1" width="550" /> |
 
 ---
 
