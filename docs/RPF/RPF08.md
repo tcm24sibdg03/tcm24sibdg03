@@ -14,7 +14,7 @@ A coleção foi organizada por entidades (`CLIENTES`, `VEICULOS`, `AGENDAMENTO`,
 - Inclui todos os métodos CRUD: `GET`, `POST`, `PUT`, `DELETE`.
 - Justificação: os dados do cliente são geridos diretamente pela equipa administrativa.
 
-| Print Clientes | <img src="../img/postman-clientes.png" alt="p-c" width="450" /> |
+| Print Clientes | <img src="../img/postman-clientes.png" alt="p-c" width="250" /> |
 
 ### `VEICULOS`
 | Endpoint | Justificação |
@@ -24,13 +24,13 @@ A coleção foi organizada por entidades (`CLIENTES`, `VEICULOS`, `AGENDAMENTO`,
 | `GET /clientes/:id/veiculos` ou com `filter` | Obtenção de veículos por cliente. |
 | `POST`, `PUT`, `DELETE` | Incluídos porque os veículos são registados, editados ou removidos diretamente por admins.
 
-| Print Veiculos | <img src="../img/postman-veiculos.png" alt="p-v" width="450" /> |
+| Print Veiculos | <img src="../img/postman-veiculos.png" alt="p-v" width="250" /> |
 
 ### `AGENDAMENTOS`
 - Inclui `GET`, `POST`, `PUT`, `DELETE`.
 - Justificação: a marcação de agendamentos é dinâmica, e as alterações/cancelamentos podem ser feitas manualmente.
 
-| Print Agendamentos | <img src="../img/postman-agendamento.png" alt="p-a" width="450" /> |
+| Print Agendamentos | <img src="../img/postman-agendamento.png" alt="p-a" width="250" /> |
 
 ### `SERVICOS`
 | Método | Justificação |
@@ -40,7 +40,7 @@ A coleção foi organizada por entidades (`CLIENTES`, `VEICULOS`, `AGENDAMENTO`,
 | `POST`, `PUT` | Incluídos porque os serviços podem ser adicionados e atualizados conforme a oficina expande ou diversifica os seus serviços. |
 | `DELETE` | Incluído para permitir testes e gestão completa dos serviços, embora na prática os serviços raramente sejam removidos. |
 
-| Print Servicos | <img src="../img/postman-servico.png" alt="p-s" width="450" /> |
+| Print Servicos | <img src="../img/postman-servico.png" alt="p-s" width="250" /> |
 
 ### `INCLUI` (Agendamento + Serviço)
 | Método | Justificação |
@@ -51,7 +51,7 @@ A coleção foi organizada por entidades (`CLIENTES`, `VEICULOS`, `AGENDAMENTO`,
 
 > **Nota:** Não foi incluído `DELETE` porque os serviços não devem ser removidos após associados — seguem lógica funcional do domínio da oficina.
 
-| Print Inclui | <img src="../img/postman-inclui.png" alt="p-i" width="450" /> |
+| Print Inclui | <img src="../img/postman-inclui.png" alt="p-i" width="250" /> |
 
 ### `HISTORICO`
 - Apenas possui `GET`.
@@ -60,7 +60,7 @@ A coleção foi organizada por entidades (`CLIENTES`, `VEICULOS`, `AGENDAMENTO`,
   - É gerado automaticamente com base em ações no `AgendamentoController`.
   - Serve apenas como log de leitura.
 
-| Print Historico | <img src="../img/postman-historico.png" alt="p-h" width="450" /> |
+| Print Historico | <img src="../img/postman-historico.png" alt="p-h" width="250" /> |
 
 ---
 
