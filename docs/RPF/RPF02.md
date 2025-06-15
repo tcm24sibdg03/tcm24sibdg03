@@ -20,7 +20,7 @@ A entidade **Veículo** representa os automóveis registados na oficina. Os atri
 A entidade **Serviço** define os tipos de serviços que a oficina oferece. Cada serviço tem um `id`, uma descrição (`tipo`) e um `preco` associado. Esta entidade é usada como referência nos agendamentos.
 
 ### Agendamento
-A entidade **Agendamento** representa a marcação de um serviço para um determinado veículo. Inclui `id`, `data`, `hora` e `status`, além das referências ao veículo e ao serviço agendado.
+A entidade **Agendamento** representa a marcação de um serviço para um determinado veículo. Inclui `id`, `data`, `hora` e `status`, além das referências ao veículo e, posteriormente os serviço registados.
 
 ### Histórico
 A entidade **Histórico** regista a execução efetiva de serviços previamente agendados. Inclui `id`, `notas`, e chaves estrangeiras que referem `agendamentoId` e `veiculoId`.
