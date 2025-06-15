@@ -57,9 +57,6 @@ Marcações feitas para serviços a serem realizados.
 | hora               | Hora da marcação                   | TIME NOT NULL                                   | CURRENT_TIME ()          | Não         | Não  |
 | status | Estado da marcação (confirmado?)   | VARCHAR(20) NOT NULL                            | -            | Não         | Não  |
 | id_veiculo         | Veículo a ser intervencionado      | INT, FOREIGN KEY → Veiculo(id_veiculo) NOT NULL | -            | Não         | Não  |
-| id_servico         | Serviço a ser realizado            | INT, FOREIGN KEY → Servico(id_servico) NOT NULL | -            | Não         | Não  |
-
-> **Nota:** Embora o campo `servicoId` esteja presente na estrutura relacional original para facilitar a compreensão e ligação direta em consultas simples, a implementação prática da API segue um modelo mais flexível, utilizando uma tabela de relação (Inclui) que permite associar múltiplos serviços a um único agendamento, com estados distintos. Esta decisão reflete melhor as necessidades reais do domínio e a escalabilidade do sistema.
 
 ---
 

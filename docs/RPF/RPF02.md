@@ -34,11 +34,9 @@ Associação **Inclui** entre agendamentos e serviços, com indicação se o ser
 
 As seguintes regras de negócio foram identificadas como necessárias à integridade do sistema, mas não são diretamente representáveis no modelo E/A:
 
-- Um veículo não pode ter mais do que um serviço agendado na mesma data e hora.
-- Não é permitido eliminar registos de histórico de serviços – o histórico deve ser permanente.
-- As ações recomendadas devem estar sempre associadas a um veículo e conter uma descrição e um estado (pendente ou concluída).
+- Não é permitido eliminar registos de histórico – apenas registos de agendamentos.
 - Um agendamento só pode existir se houver um veículo associado previamente registado.
-- O status de confirmação de um agendamento deve ser atualizado antes da data do serviço.
+- O status de confirmação de um agendamento deve ser atualizado.
 
 ---
 

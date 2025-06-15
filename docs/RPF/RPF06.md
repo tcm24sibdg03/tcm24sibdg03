@@ -6,6 +6,7 @@
 
 - Adição manual de relações `@hasMany().through()` nos modelos e `createHasManyThroughRepositoryFactoryFor` nos repositórios.
 - Separar claramente modelos com interação do utilizador e modelos internos (ex: `Historico`).
+- A lista de serviços associados a um agendamento é obtida automaticamente via relação `@hasMany().through()`.
 
 ---
 

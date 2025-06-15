@@ -23,11 +23,8 @@ Para a modelação do problema, foram assumidos os seguintes pressupostos:
 - Cada veículo pode ter vários serviços associados ao longo do tempo.
 - Os serviços são categorizados por tipo e têm um custo associado.
 - O agendamento de serviços inclui a data, hora, tipo de serviço e estado de confirmação.
-- É possível associar ações recomendadas a um veículo, com estado (pendente/concluída) e descrição.
-- Um veículo pode acumular múltiplas ações recomendadas que devem ser seguidas após determinados serviços.
 - A comunicação com o cliente será feita através de notificações relativas a agendamentos e confirmações.
-- O sistema deverá manter um histórico completo das intervenções realizadas.
-- Não deverá ser permitido agendar dois serviços no mesmo dia e hora para o mesmo veículo.
+- O sistema deverá manter um histórico completo dos agendamentos.
 
 ---
 
