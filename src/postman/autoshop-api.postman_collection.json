@@ -653,7 +653,7 @@
 							"variable": [
 								{
 									"key": "agendamentoId",
-									"value": "32"
+									"value": "1"
 								}
 							]
 						}
@@ -670,7 +670,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"pendente\": true,\r\n  \"recomendado\": false,\r\n  \"executado\": false\r\n}",
+							"raw": "{\r\n  \"pendente\": false,\r\n  \"recomendado\": false,\r\n  \"executado\": true\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -697,7 +697,7 @@
 								},
 								{
 									"key": "servicoId",
-									"value": "4"
+									"value": "6"
 								}
 							]
 						}
@@ -714,7 +714,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"pendente\": false,\r\n  \"executado\": true\r\n}",
+							"raw": "{\r\n  \"pendente\": false,\r\n  \"recomendado\": false,\r\n  \"executado\": true\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
