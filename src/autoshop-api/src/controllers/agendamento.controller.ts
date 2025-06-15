@@ -19,11 +19,14 @@ import {
 } from '@loopback/rest';
 import {Agendamento} from '../models';
 import {AgendamentoRepository} from '../repositories';
+import {HistoricoRepository} from '../repositories';
 
 export class AgendamentoController {
   constructor(
     @repository(AgendamentoRepository)
     public agendamentoRepository: AgendamentoRepository,
+    @repository(HistoricoRepository)
+    public historicoRepository: HistoricoRepository,
   ) {}
 
   @post('/agendamentos')
@@ -44,7 +47,14 @@ export class AgendamentoController {
     })
     agendamento: Omit<Agendamento, 'id'>,
   ): Promise<Agendamento> {
-    return this.agendamentoRepository.create(agendamento);
+    const novo = await this.agendamentoRepository.create(agendamento);
+
+    await this.historicoRepository.create({
+    agendamentoId: novo.id,
+    veiculoId: novo.veiculoId,
+    notas: `Status: ${novo.status}`,
+  });
+  return novo;
   }
 
   @get('/agendamentos/count')
@@ -146,6 +156,7 @@ export class AgendamentoController {
     description: 'Agendamento DELETE success',
   })
   async deleteById(@param.path.number('id') id: number): Promise<void> {
+    await this.historicoRepository.deleteAll({agendamentoId: id});
     await this.agendamentoRepository.deleteById(id);
   }
 }

@@ -28,7 +28,7 @@
 
 **Solução:**
 - Apenas implementar `GET` no controller.
-- Inserção automática ao criar um `Agendamento`.
+- Inserção/delete automática ao criar/apagar um `Agendamento`.
 - Relação `hasMany` com `Veiculo` para facilitar consulta.
 
 ### Erro comum: `ENOTFOUND locahost`
