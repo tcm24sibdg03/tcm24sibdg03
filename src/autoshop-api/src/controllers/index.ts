@@ -8,6 +8,4 @@ export * from './veiculo-agendamento.controller';
 export * from './veiculo-historico.controller';
 export * from './historico-veiculo.controller';
 export * from './historico-agendamento.controller';
-export * from './inclui-agendamento.controller';
-export * from './inclui-servico.controller';
 export * from './historico.controller';

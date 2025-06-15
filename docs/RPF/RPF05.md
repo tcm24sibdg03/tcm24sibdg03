@@ -15,6 +15,9 @@ DROP TABLE IF EXISTS `Veiculo`;
 DROP TABLE IF EXISTS `Cliente`;
 DROP TABLE IF EXISTS `Servico`;
 
+DROP VIEW IF EXISTS `veiculos_com_agendamentos_pendentes`;
+DROP VIEW IF EXISTS `vista_historico_veiculo`;
+
 CREATE TABLE IF NOT EXISTS `Cliente` (
    `id` INT AUTO_INCREMENT PRIMARY KEY,
    `nome` VARCHAR(100) NOT NULL,
@@ -46,9 +49,7 @@ CREATE TABLE IF NOT EXISTS `Agendamento` (
    `hora` TIME NOT NULL,
    `status` ENUM('Pendente', 'Confirmado', 'Cancelado') NOT NULL,
    `veiculoId` INT NOT NULL,
-   `servicoId` INT NOT NULL,
-   FOREIGN KEY (`veiculoId`) REFERENCES `Veiculo`(`id`),
-   FOREIGN KEY (`servicoId`) REFERENCES `Servico`(`id`)
+   FOREIGN KEY (`veiculoId`) REFERENCES `Veiculo`(`id`)
 );
 
 CREATE TABLE IF NOT EXISTS `Historico` (
@@ -56,13 +57,12 @@ CREATE TABLE IF NOT EXISTS `Historico` (
    `notas` TEXT,
    `agendamentoId` INT NOT NULL,
    `veiculoId` INT NOT NULL,
-   `servicoId` INT NOT NULL,
    FOREIGN KEY (`agendamentoId`) REFERENCES `Agendamento`(`id`),
-   FOREIGN KEY (`veiculoId`) REFERENCES `Veiculo`(`id`),
-   FOREIGN KEY (`servicoId`) REFERENCES `Servico`(`id`)
+   FOREIGN KEY (`veiculoId`) REFERENCES `Veiculo`(`id`)
 );
 
 CREATE TABLE IF NOT EXISTS `Inclui` (
+  `id` INT,
   `agendamentoId` INT NOT NULL,
   `servicoId` INT NOT NULL,
   `recomendado` BOOLEAN DEFAULT FALSE,
@@ -89,11 +89,11 @@ VALUES ('BI-34-MV', 'VW', 'Sirocco', 2010, 200000, 'W1234567890ABC123', 1);
 INSERT INTO Servico (tipo, preco)
 VALUES ('Revisão', 59.90);
 
-INSERT INTO Agendamento (data, hora, status, veiculoId, servicoId)
-VALUES ('2025-05-22', '09:30:00', 'Confirmado', 1, 1);
+INSERT INTO Agendamento (data, hora, status, veiculoId)
+VALUES ('2025-05-22', '09:30:00', 'Confirmado', 1);
 
-INSERT INTO Historico (notas, agendamentoId, veiculoId, servicoId)
-VALUES ('Substituição do filtro de ar incluída.', 1, 1, 1);
+INSERT INTO Historico (notas, agendamentoId, veiculoId)
+VALUES ('Substituição do filtro de ar incluída.', 1, 1);
 
 INSERT INTO Inclui (agendamentoId, servicoId, recomendado, executado, pendente)
 VALUES (1, 2, TRUE, FALSE, TRUE);

@@ -121,8 +121,8 @@ SELECT
     h.notas,
     h.Id
 FROM Historico h
-JOIN Veiculo v ON h.veiculoId = v.Id
-JOIN Agendamento a ON h.agendamentoId = a.Id;
+JOIN Veiculo v ON h.veiculoId = v.id
+JOIN Agendamento a ON h.agendamentoId = a.id;
 ```
 
 ---

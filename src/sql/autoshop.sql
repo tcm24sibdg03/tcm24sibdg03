@@ -44,9 +44,7 @@ CREATE TABLE IF NOT EXISTS `Agendamento` (
    `hora` TIME NOT NULL,
    `status` ENUM('Pendente', 'Confirmado', 'Cancelado') NOT NULL,
    `veiculoId` INT NOT NULL,
-   `servicoId` INT NOT NULL,
-   FOREIGN KEY (`veiculoId`) REFERENCES `Veiculo`(`id`),
-   FOREIGN KEY (`servicoId`) REFERENCES `Servico`(`id`)
+   FOREIGN KEY (`veiculoId`) REFERENCES `Veiculo`(`id`)
 );
 
 CREATE TABLE IF NOT EXISTS `Historico` (
@@ -59,6 +57,7 @@ CREATE TABLE IF NOT EXISTS `Historico` (
 );
 
 CREATE TABLE IF NOT EXISTS `Inclui` (
+  `id` INT,
   `agendamentoId` INT NOT NULL,
   `servicoId` INT NOT NULL,
   `recomendado` BOOLEAN DEFAULT FALSE,
@@ -204,66 +203,66 @@ INSERT INTO Servico (tipo, preco)
 VALUES ('Outro', 90);
 
 -- Inserts Agendamento
-INSERT INTO Agendamento (data, hora, status, veiculoId, servicoId)
-VALUES ('2025-05-28', '9:00:00', 'Cancelado', 2, 2);
-INSERT INTO Agendamento (data, hora, status, veiculoId, servicoId)
-VALUES ('2025-05-29', '10:00:00', 'Cancelado', 3, 3);
-INSERT INTO Agendamento (data, hora, status, veiculoId, servicoId)
-VALUES ('2025-05-30', '11:00:00', 'Cancelado', 4, 4);
-INSERT INTO Agendamento (data, hora, status, veiculoId, servicoId)
-VALUES ('2025-05-31', '12:00:00', 'Pendente', 5, 1);
-INSERT INTO Agendamento (data, hora, status, veiculoId, servicoId)
-VALUES ('2025-06-01', '13:00:00', 'Cancelado', 6, 2);
-INSERT INTO Agendamento (data, hora, status, veiculoId, servicoId)
-VALUES ('2025-06-02', '14:00:00', 'Confirmado', 7, 3);
-INSERT INTO Agendamento (data, hora, status, veiculoId, servicoId)
-VALUES ('2025-06-03', '15:00:00', 'Cancelado', 8, 4);
-INSERT INTO Agendamento (data, hora, status, veiculoId, servicoId)
-VALUES ('2025-06-04', '16:00:00', 'Pendente', 9, 1);
-INSERT INTO Agendamento (data, hora, status, veiculoId, servicoId)
-VALUES ('2025-06-05', '17:00:00', 'Pendente', 10, 2);
-INSERT INTO Agendamento (data, hora, status, veiculoId, servicoId)
-VALUES ('2025-06-06', '8:00:00', 'Pendente', 11, 3);
-INSERT INTO Agendamento (data, hora, status, veiculoId, servicoId)
-VALUES ('2025-06-07', '9:00:00', 'Pendente', 12, 4);
-INSERT INTO Agendamento (data, hora, status, veiculoId, servicoId)
-VALUES ('2025-06-08', '10:00:00', 'Confirmado', 13, 1);
-INSERT INTO Agendamento (data, hora, status, veiculoId, servicoId)
-VALUES ('2025-06-09', '11:00:00', 'Pendente', 14, 2);
-INSERT INTO Agendamento (data, hora, status, veiculoId, servicoId)
-VALUES ('2025-06-10', '12:00:00', 'Pendente', 15, 3);
-INSERT INTO Agendamento (data, hora, status, veiculoId, servicoId)
-VALUES ('2025-06-11', '13:00:00', 'Cancelado', 16, 4);
-INSERT INTO Agendamento (data, hora, status, veiculoId, servicoId)
-VALUES ('2025-06-12', '14:00:00', 'Cancelado', 17, 1);
-INSERT INTO Agendamento (data, hora, status, veiculoId, servicoId)
-VALUES ('2025-06-13', '15:00:00', 'Confirmado', 18, 2);
-INSERT INTO Agendamento (data, hora, status, veiculoId, servicoId)
-VALUES ('2025-06-14', '16:00:00', 'Cancelado', 19, 3);
-INSERT INTO Agendamento (data, hora, status, veiculoId, servicoId)
-VALUES ('2025-06-15', '17:00:00', 'Pendente', 20, 4);
-INSERT INTO Agendamento (data, hora, status, veiculoId, servicoId)
-VALUES ('2025-06-16', '8:00:00', 'Cancelado', 21, 1);
-INSERT INTO Agendamento (data, hora, status, veiculoId, servicoId)
-VALUES ('2025-06-17', '9:00:00', 'Pendente', 22, 2);
-INSERT INTO Agendamento (data, hora, status, veiculoId, servicoId)
-VALUES ('2025-06-18', '10:00:00', 'Cancelado', 23, 3);
-INSERT INTO Agendamento (data, hora, status, veiculoId, servicoId)
-VALUES ('2025-06-19', '11:00:00', 'Pendente', 24, 4);
-INSERT INTO Agendamento (data, hora, status, veiculoId, servicoId)
-VALUES ('2025-06-20', '12:00:00', 'Confirmado', 25, 1);
-INSERT INTO Agendamento (data, hora, status, veiculoId, servicoId)
-VALUES ('2025-06-21', '13:00:00', 'Confirmado', 26, 2);
-INSERT INTO Agendamento (data, hora, status, veiculoId, servicoId)
-VALUES ('2025-06-22', '14:00:00', 'Pendente', 27, 3);
-INSERT INTO Agendamento (data, hora, status, veiculoId, servicoId)
-VALUES ('2025-06-23', '15:00:00', 'Cancelado', 28, 4);
-INSERT INTO Agendamento (data, hora, status, veiculoId, servicoId)
-VALUES ('2025-06-24', '16:00:00', 'Pendente', 29, 1);
-INSERT INTO Agendamento (data, hora, status, veiculoId, servicoId)
-VALUES ('2025-06-25', '17:00:00', 'Confirmado', 30, 2);
-INSERT INTO Agendamento (data, hora, status, veiculoId, servicoId)
-VALUES ('2025-06-26', '8:00:00', 'Confirmado', 1, 3);
+INSERT INTO Agendamento (data, hora, status, veiculoId)
+VALUES ('2025-05-28', '9:00:00', 'Cancelado', 2);
+INSERT INTO Agendamento (data, hora, status, veiculoId)
+VALUES ('2025-05-29', '10:00:00', 'Cancelado', 3);
+INSERT INTO Agendamento (data, hora, status, veiculoId)
+VALUES ('2025-05-30', '11:00:00', 'Cancelado', 4);
+INSERT INTO Agendamento (data, hora, status, veiculoId)
+VALUES ('2025-05-31', '12:00:00', 'Pendente', 5);
+INSERT INTO Agendamento (data, hora, status, veiculoId)
+VALUES ('2025-06-01', '13:00:00', 'Cancelado', 6);
+INSERT INTO Agendamento (data, hora, status, veiculoId)
+VALUES ('2025-06-02', '14:00:00', 'Confirmado', 7);
+INSERT INTO Agendamento (data, hora, status, veiculoId)
+VALUES ('2025-06-03', '15:00:00', 'Cancelado', 8);
+INSERT INTO Agendamento (data, hora, status, veiculoId)
+VALUES ('2025-06-04', '16:00:00', 'Pendente', 9);
+INSERT INTO Agendamento (data, hora, status, veiculoId)
+VALUES ('2025-06-05', '17:00:00', 'Pendente', 10);
+INSERT INTO Agendamento (data, hora, status, veiculoId)
+VALUES ('2025-06-06', '8:00:00', 'Pendente', 11);
+INSERT INTO Agendamento (data, hora, status, veiculoId)
+VALUES ('2025-06-07', '9:00:00', 'Pendente', 12);
+INSERT INTO Agendamento (data, hora, status, veiculoId)
+VALUES ('2025-06-08', '10:00:00', 'Confirmado', 13);
+INSERT INTO Agendamento (data, hora, status, veiculoId)
+VALUES ('2025-06-09', '11:00:00', 'Pendente', 14);
+INSERT INTO Agendamento (data, hora, status, veiculoId)
+VALUES ('2025-06-10', '12:00:00', 'Pendente', 15);
+INSERT INTO Agendamento (data, hora, status, veiculoId)
+VALUES ('2025-06-11', '13:00:00', 'Cancelado', 16);
+INSERT INTO Agendamento (data, hora, status, veiculoId)
+VALUES ('2025-06-12', '14:00:00', 'Cancelado', 17);
+INSERT INTO Agendamento (data, hora, status, veiculoId)
+VALUES ('2025-06-13', '15:00:00', 'Confirmado', 18);
+INSERT INTO Agendamento (data, hora, status, veiculoId)
+VALUES ('2025-06-14', '16:00:00', 'Cancelado', 19);
+INSERT INTO Agendamento (data, hora, status, veiculoId)
+VALUES ('2025-06-15', '17:00:00', 'Pendente', 20);
+INSERT INTO Agendamento (data, hora, status, veiculoId)
+VALUES ('2025-06-16', '8:00:00', 'Cancelado', 21);
+INSERT INTO Agendamento (data, hora, status, veiculoId)
+VALUES ('2025-06-17', '9:00:00', 'Pendente', 22);
+INSERT INTO Agendamento (data, hora, status, veiculoId)
+VALUES ('2025-06-18', '10:00:00', 'Cancelado', 23);
+INSERT INTO Agendamento (data, hora, status, veiculoId)
+VALUES ('2025-06-19', '11:00:00', 'Pendente', 24);
+INSERT INTO Agendamento (data, hora, status, veiculoId)
+VALUES ('2025-06-20', '12:00:00', 'Confirmado', 25);
+INSERT INTO Agendamento (data, hora, status, veiculoId)
+VALUES ('2025-06-21', '13:00:00', 'Confirmado', 26);
+INSERT INTO Agendamento (data, hora, status, veiculoId)
+VALUES ('2025-06-22', '14:00:00', 'Pendente', 27);
+INSERT INTO Agendamento (data, hora, status, veiculoId)
+VALUES ('2025-06-23', '15:00:00', 'Cancelado', 28);
+INSERT INTO Agendamento (data, hora, status, veiculoId)
+VALUES ('2025-06-24', '16:00:00', 'Pendente', 29);
+INSERT INTO Agendamento (data, hora, status, veiculoId)
+VALUES ('2025-06-25', '17:00:00', 'Confirmado', 30);
+INSERT INTO Agendamento (data, hora, status, veiculoId)
+VALUES ('2025-06-26', '8:00:00', 'Confirmado', 1);
 
 -- Inserts Historico
 INSERT INTO Historico (notas, agendamentoId, veiculoId)
@@ -348,6 +347,46 @@ INSERT INTO Inclui (agendamentoId, servicoId, recomendado, executado, pendente)
 VALUES (9, 2, FALSE, TRUE, FALSE);
 INSERT INTO Inclui (agendamentoId, servicoId, recomendado, executado, pendente)
 VALUES (10, 3, TRUE, FALSE, TRUE);
+INSERT INTO Inclui (agendamentoId, servicoId, recomendado, executado, pendente)
+VALUES (11, 2, FALSE, FALSE, TRUE);
+INSERT INTO Inclui (agendamentoId, servicoId, recomendado, executado, pendente)
+VALUES (12, 3, TRUE, FALSE, TRUE);
+INSERT INTO Inclui (agendamentoId, servicoId, recomendado, executado, pendente)
+VALUES (13, 4, FALSE, TRUE, FALSE);
+INSERT INTO Inclui (agendamentoId, servicoId, recomendado, executado, pendente)
+VALUES (14, 1, TRUE, FALSE, TRUE);
+INSERT INTO Inclui (agendamentoId, servicoId, recomendado, executado, pendente)
+VALUES (15, 2, FALSE, FALSE, TRUE);
+INSERT INTO Inclui (agendamentoId, servicoId, recomendado, executado, pendente)
+VALUES (16, 3, TRUE, TRUE, FALSE);
+INSERT INTO Inclui (agendamentoId, servicoId, recomendado, executado, pendente)
+VALUES (17, 4, FALSE, FALSE, TRUE);
+INSERT INTO Inclui (agendamentoId, servicoId, recomendado, executado, pendente)
+VALUES (18, 1, TRUE, FALSE, TRUE);
+INSERT INTO Inclui (agendamentoId, servicoId, recomendado, executado, pendente)
+VALUES (19, 2, FALSE, TRUE, FALSE);
+INSERT INTO Inclui (agendamentoId, servicoId, recomendado, executado, pendente)
+VALUES (20, 3, TRUE, FALSE, TRUE);
+INSERT INTO Inclui (agendamentoId, servicoId, recomendado, executado, pendente)
+VALUES (21, 2, FALSE, FALSE, TRUE);
+INSERT INTO Inclui (agendamentoId, servicoId, recomendado, executado, pendente)
+VALUES (22, 3, TRUE, FALSE, TRUE);
+INSERT INTO Inclui (agendamentoId, servicoId, recomendado, executado, pendente)
+VALUES (23, 4, FALSE, TRUE, FALSE);
+INSERT INTO Inclui (agendamentoId, servicoId, recomendado, executado, pendente)
+VALUES (24, 1, TRUE, FALSE, TRUE);
+INSERT INTO Inclui (agendamentoId, servicoId, recomendado, executado, pendente)
+VALUES (25, 2, FALSE, FALSE, TRUE);
+INSERT INTO Inclui (agendamentoId, servicoId, recomendado, executado, pendente)
+VALUES (26, 3, TRUE, TRUE, FALSE);
+INSERT INTO Inclui (agendamentoId, servicoId, recomendado, executado, pendente)
+VALUES (27, 4, FALSE, FALSE, TRUE);
+INSERT INTO Inclui (agendamentoId, servicoId, recomendado, executado, pendente)
+VALUES (28, 1, TRUE, FALSE, TRUE);
+INSERT INTO Inclui (agendamentoId, servicoId, recomendado, executado, pendente)
+VALUES (29, 2, FALSE, TRUE, FALSE);
+INSERT INTO Inclui (agendamentoId, servicoId, recomendado, executado, pendente)
+VALUES (30, 3, TRUE, FALSE, TRUE);
 
 -- Vistas
 
@@ -374,5 +413,5 @@ SELECT
     h.notas,
     h.Id
 FROM Historico h
-JOIN Veiculo v ON h.veiculoId = v.Id
-JOIN Agendamento a ON h.agendamentoId = a.Id;
+JOIN Veiculo v ON h.veiculoId = v.id
+JOIN Agendamento a ON h.agendamentoId = a.id;

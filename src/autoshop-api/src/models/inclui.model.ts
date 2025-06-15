@@ -5,7 +5,7 @@ import {Servico} from './servico.model';
 @model({
   settings: {
     idInjection: false,
-    hiddenProperties: ['servicoRef', 'agendamentoRef', 'id']
+    hiddenProperties: ['id']
   }
 })
 export class Inclui extends Entity {
@@ -15,8 +15,8 @@ export class Inclui extends Entity {
 
   @property({
   type: 'number',
-  generated: true,
-  persist: false
+  generated: false,
+  persist: true
   })
   id?: number;
 
@@ -43,12 +43,6 @@ export class Inclui extends Entity {
 
   @property({type: 'number', id: true})
   servicoId: number;
-
-  @belongsTo(() => Agendamento, {name: 'agendamento'})
-  agendamentoRef?: number;
-
-  @belongsTo(() => Servico, {name: 'servico'})
-  servicoRef?: number;
 
   constructor(data?: Partial<Inclui>) {
     super(data);

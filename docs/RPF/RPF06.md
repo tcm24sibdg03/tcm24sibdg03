@@ -37,7 +37,7 @@
 
 **Solução:** Corrigir para `localhost` no `datasource.json`.
 
-> **Nota:** Na implementação da API foi-nos exigido intervenção manual para ultrapassar limitações do gerador automático, principalmente em relações complexas e modelos sem `id` simples.
+> **Nota:** A implementação exigiu intervenção manual para ultrapassar limitações do gerador automático, principalmente em relações complexas e modelos sem `id` simples.
 
 ---
 

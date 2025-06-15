@@ -23,7 +23,7 @@ import {AgendamentoRepository} from '../repositories';
 export class AgendamentoController {
   constructor(
     @repository(AgendamentoRepository)
-    public agendamentoRepository : AgendamentoRepository,
+    public agendamentoRepository: AgendamentoRepository,
   ) {}
 
   @post('/agendamentos')
@@ -65,7 +65,7 @@ export class AgendamentoController {
       'application/json': {
         schema: {
           type: 'array',
-          items: getModelSchemaRef(Agendamento, {includeRelations: true}),
+          items: getModelSchemaRef(Agendamento),
         },
       },
     },
@@ -100,7 +100,7 @@ export class AgendamentoController {
     description: 'Agendamento model instance',
     content: {
       'application/json': {
-        schema: getModelSchemaRef(Agendamento, {includeRelations: true}),
+        schema: getModelSchemaRef(Agendamento),
       },
     },
   })
@@ -111,7 +111,6 @@ export class AgendamentoController {
       include: [{relation: 'servicos'}],
     });
   }
-
 
   @patch('/agendamentos/{id}')
   @response(204, {
