@@ -8,9 +8,18 @@ A coleção foi organizada por entidades (`CLIENTES`, `VEICULOS`, `AGENDAMENTO`,
 
 ---
 
+- [CLIENTES](#CLIENTES)
+- [VEICULOS](#VEICULOS)
+- [AGENDAMENTOS](#AGENDAMENTOS)
+- [SERVICOS](#SERVICOS)
+- [INCLUI](#INCLUI)
+- [HISTORICO](#HISTORICO)
+
+---
+
 ## Justificação de Decisões por Entidade
 
-### `CLIENTES`
+### CLIENTES
 - Inclui todos os métodos CRUD: `GET`, `POST`, `PUT`, `DELETE`.
 - Justificação: os dados do cliente são geridos diretamente pela equipa administrativa.
 
@@ -18,7 +27,7 @@ A coleção foi organizada por entidades (`CLIENTES`, `VEICULOS`, `AGENDAMENTO`,
 |-------|-------|
 | <img src="../img/postman-clientes.png" alt="p-c" width="250" /> | <img src="../img/clientes_methods.png" alt="m-c" width="600" /> |
 
-### `VEICULOS`
+### VEICULOS
 | Endpoint | Justificação |
 |----------|--------------|
 | `GET /veiculos` | Consulta geral. |
@@ -30,7 +39,7 @@ A coleção foi organizada por entidades (`CLIENTES`, `VEICULOS`, `AGENDAMENTO`,
 |-------|
 | <img src="../img/postman-clientes.png" alt="p-c" width="250" /> |
 
-### `AGENDAMENTOS`
+### AGENDAMENTOS
 - Inclui `GET`, `POST`, `PUT`, `DELETE`.
 - Justificação: a marcação de agendamentos é dinâmica, e as alterações/cancelamentos podem ser feitas manualmente.
 
@@ -38,7 +47,7 @@ A coleção foi organizada por entidades (`CLIENTES`, `VEICULOS`, `AGENDAMENTO`,
 |-------|
 | <img src="../img/postman-agendamento.png" alt="p-a" width="250" /> |
 
-### `SERVICOS`
+### SERVICOS
 | Método | Justificação |
 |--------|--------------|
 | `GET`  | Consulta geral. |
@@ -50,7 +59,7 @@ A coleção foi organizada por entidades (`CLIENTES`, `VEICULOS`, `AGENDAMENTO`,
 |-------|
 | Print Servicos | <img src="../img/postman-servico.png" alt="p-s" width="250" /> |
 
-### `INCLUI` (Agendamento + Serviço)
+### INCLUI (Agendamento + Serviço)
 | Método | Justificação |
 |--------|--------------|
 | `GET`  | Visualizar serviços associados a um agendamento. |
@@ -63,7 +72,7 @@ A coleção foi organizada por entidades (`CLIENTES`, `VEICULOS`, `AGENDAMENTO`,
 |-------|
 | <img src="../img/postman-inclui.png" alt="p-i" width="250" /> |
 
-### `HISTORICO`
+### HISTORICO
 - Apenas possui `GET`.
 - Justificação:
   - **Não é editável nem criado manualmente**.
