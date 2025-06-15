@@ -14,9 +14,9 @@ A coleção foi organizada por entidades (`CLIENTES`, `VEICULOS`, `AGENDAMENTO`,
 - Inclui todos os métodos CRUD: `GET`, `POST`, `PUT`, `DELETE`.
 - Justificação: os dados do cliente são geridos diretamente pela equipa administrativa.
 
-| Print Clientes |
-|-------|
-| <img src="../img/postman-clientes.png" alt="p-c" width="250" /> |
+| Print Clientes | Print Controller |
+|-------|-------|
+| <img src="../img/postman-clientes.png" alt="p-c" width="250" /> | <img src="../img/clientes_methods.png" alt="m-c" width="600" /> |
 
 ### `VEICULOS`
 | Endpoint | Justificação |
