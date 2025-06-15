@@ -6,6 +6,8 @@
 
 A coleção foi organizada por entidades (`CLIENTES`, `VEICULOS`, `AGENDAMENTO`, `SERVICOS`, `INCLUI`, `HISTORICO`) e cada conjunto de endpoints reflete tanto as necessidades práticas da API como o comportamento esperado dos utilizadores finais (administração e mecânicos).
 
+> **Nota:** Todos os métodos não utilizados foram deliberadamente omitidos da coleção, tendo sido apenas implementados os que respondem aos objetivos funcionais e à lógica do domínio da oficina.
+
 ---
 
 - [CLIENTES](#CLIENTES)
