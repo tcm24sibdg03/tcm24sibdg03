@@ -22,7 +22,7 @@ Durante o desenvolvimento, foram encontradas várias diferenças entre a estrutu
 
 * ## Diferença output da API
 
--Antes de executar migrate, o LoopBack interpreta o campo data como um objeto `Date`, mesmo estando definido como `string` na API. Após o migrate, o campo passa a ser tratado corretamente como string, refletindo o formato esperado no output da API (ex: "2025-05-28").
+- Antes de executar migrate, o LoopBack interpreta o campo data como um objeto `Date`, mesmo estando definido como `string` na API. Após o migrate, o campo passa a ser tratado corretamente como string, refletindo o formato esperado no output da API (ex: "2025-05-28").
 
 | Before migrate | After migrate |
 |-------|-------|
