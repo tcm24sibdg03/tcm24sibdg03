@@ -19,17 +19,30 @@ Uma oficina mecânica enfrenta desafios significativos na gestão de clientes, v
 
 ---
 
+## Code
+
+- `autoshop-api/` — source code of the API (LoopBack 4)
+- `postman/` — Postman collection with all API requests
+- `sql/` — contains both the original `.sql` file and the migrated version
+- `.html/` — contains the mockup interface for interacting with the API
+
+> **Nota:** Foi desenvolvido em recurso a `html`, `css`, `JavaScript` um mockup simples da interface da API, um ficheiro único extra apenas para efeitos de apresentação. O objetivo é visualizar e testar os endpoints de forma mais intuitiva, sem recorrer ao Postman.
+
+---
+
 ## Report
 - located in the `docs` folder
 - [REI](docs/REI/REI00.md)
 - [REBD](docs/REBD/REBD00.md)
+- [RPF](docs/RPF/RPF00.md)
 
 ---
 
 ## Technologies
-- Docker
-- NodeJS
+- Node.js
+- LoopBack 4
 - MySQL
+- Postman
 
 ---
 

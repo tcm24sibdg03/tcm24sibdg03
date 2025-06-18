@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>AutoShop API - Mockup</title>
+  <style>
+    body {
+      display: flex;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #1e1e2f;
+      color: #fff;
+      margin: 0;
+    }
+    .main {
+      flex: 2;
+      padding: 20px;
+    }
+    .output-panel {
+      flex: 1;
+      background: #2e2e3d;
+      padding: 20px;
+      border-left: 1px solid #444;
+      overflow-y: auto;
+    }
+    h1 {
+      color: #00d1b2;
+    }
+    .section {
+      display: none;
+      margin-bottom: 30px;
+      border-top: 1px solid #444;
+      padding-top: 10px;
+    }
+    .visible {
+      display: block;
+    }
+    .nav {
+      margin-bottom: 20px;
+    }
+    .nav button, button, input, textarea {
+      font-size: 14px;
+      margin: 5px;
+    }
+    input[type="number"], input[type="text"] {
+      width: 120px;
+      padding: 6px;
+      border-radius: 4px;
+    }
+    textarea {
+      width: 100%;
+      height: 120px;
+    }
+    button {
+      background-color: #00d1b2;
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    button:hover {
+      background-color: #00b89c;
+    }
+    .active-btn {
+      background-color: #007a66;
+    }
+    pre {
+      background: #2e2e3d;
+      padding: 15px;
+      border-radius: 5px;
+      max-height: 90vh;
+      overflow: auto;
+      white-space: pre-wrap;
+      border: 1px solid #444;
+    }
+    .request-block {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      margin-bottom: 20px;
+      gap: 10px;
+      border: 1px solid #444;
+      padding: 10px;
+      border-radius: 5px;
+      background-color: #29293d;
+    }
+    .request-block .editor {
+      flex: 1;
+      min-width: 300px;
+    }
+    .request-block .controls {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .request-block input[type="number"] {
+      margin-bottom: 6px;
+    }
+    .label {
+      font-size: 12px;
+      font-style: italic;
+      color: #ccc;
+      margin-top: -4px;
+      margin-left: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="main">
+    <h1>AutoShop API - Mockup - tcm24sibdg03</h1>
+
+    <div class="nav">
+      <button onclick="toggleSection('clientes')">clientes</button>
+      <button onclick="toggleSection('veiculos')">veiculos</button>
+      <button onclick="toggleSection('agendamentos')">agendamentos</button>
+      <button onclick="toggleSection('inclui')">inclui</button>
+      <button onclick="toggleSection('servicos')">servicos</button>
+      <button onclick="toggleSection('historicos')">historicos</button>
+    </div>
+
+    <div id="clientes" class="section"></div>
+    <div id="veiculos" class="section"></div>
+    <div id="agendamentos" class="section"></div>
+    <div id="inclui" class="section"></div>
+    <div id="servicos" class="section"></div>
+    <div id="historicos" class="section"></div>
+  </div>
+
+  <div class="output-panel">
+    <h2 id="responseTitle">Resposta da API</h2>
+    <pre id="output">Aguardando ação...</pre>
+  </div>
+
+  <script>
+    const output = document.getElementById("output");
+    const responseTitle = document.getElementById("responseTitle");
+    const base = "http://localhost:3000/";
+    let activeSection = null;
+
+    const display = data => output.textContent = JSON.stringify(data, null, 2);
+
+    const defaultBodies = {
+      clientes: '{\n  "nome": "",\n  "telefone": "",\n  "email": ""\n}',
+      veiculos: '{\n  "matricula": "",\n  "marca": "",\n  "modelo": "",\n  "ano": 0,\n  "km": 0,\n  "vin": "",\n  "clienteId": 1\n}',
+      agendamentos: '{\n  "data": "",\n  "hora": "",\n  "status": "",\n  "veiculoId": 1\n}',
+      inclui: '{\n  "pendente": false,\n  "recomendado": false,\n  "executado": false\n}',
+      servicos: '{\n  "tipo": "",\n  "preco": 0\n}'
+    };
+
+    const labels = {
+      clientes: ["GET ALL CLIENTES", "GET CLIENTE BY ID", "CREATE CLIENTE", "UPDATE CLIENTE", "DELETE CLIENTE"],
+      veiculos: ["GET ALL VEHICLES", "GET VEHICLE BY ID", "GET VEHICLES BY CLIENTE", "CREATE VEHICLE", "UPDATE VEHICLE", "DELETE VEHICLE"],
+      agendamentos: ["GET ALL AGENDAMENTOS", "GET AGENDAMENTO BY ID", "CREATE AGENDAMENTO", "UPDATE AGENDAMENTO", "DELETE AGENDAMENTO"],
+      inclui: ["GET INCLUI BY AGENDAMENTO ID", "CREATE INCLUI", "UPDATE INCLUI"],
+      servicos: ["GET ALL SERVICOS", "GET SERVICO BY ID", "CREATE SERVICO", "UPDATE SERVICO", "DELETE SERVICO"],
+      historicos: ["GET ALL HISTORICOS", "GET HISTORICO BY VEICULO"]
+    };
+
+    function toggleSection(sectionId) {
+      const section = document.getElementById(sectionId);
+      const buttons = document.querySelectorAll('.nav button');
+
+      buttons.forEach(btn => btn.classList.remove('active-btn'));
+
+      if (activeSection === sectionId) {
+        section.classList.remove('visible');
+        output.textContent = 'Aguardando ação...';
+        responseTitle.textContent = 'Resposta da API';
+        resetTextareas();
+        activeSection = null;
+      } else {
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('visible'));
+        section.classList.add('visible');
+        const activeBtn = Array.from(buttons).find(btn => btn.textContent === sectionId);
+        if (activeBtn) activeBtn.classList.add('active-btn');
+        resetTextareas();
+        activeSection = sectionId;
+      }
+    }
+
+    function resetTextareas() {
+      for (const key in defaultBodies) {
+        const elements = document.querySelectorAll(`[id^="${key}Body"]`);
+        elements.forEach(el => el.value = defaultBodies[key]);
+      }
+    }
+
+    function sendRequest(method, endpoint, bodyId = null, idField = null, queryField = null) {
+      let url = base + endpoint;
+      if (Array.isArray(idField)) {
+        const [aId, sId] = idField.map(id => document.getElementById(id).value);
+        if (aId && sId) url = `${base}agendamentos/${aId}/servicos/${sId}`;
+      } else {
+        if (idField) {
+          const idValue = document.getElementById(idField).value;
+          if (idValue && endpoint === 'inclui') {
+            url = `${base}agendamentos/${idValue}/servicos`;
+          } else if (idValue) {
+            url += '/' + idValue;
+          }
+        } else if (queryField) {
+          const qValue = document.getElementById(queryField).value;
+          if (qValue) url = `${base}veiculos?filter[where][clienteId]=${qValue}`;
+        }
+      }
+
+      const options = {
+        method,
+        headers: { 'Content-Type': 'application/json' }
+      };
+      if (bodyId) {
+        try {
+          options.body = document.getElementById(bodyId).value;
+        } catch {
+          output.textContent = 'Erro no corpo da requisição';
+          return;
+        }
+      }
+      fetch(url, options)
+        .then(async res => {
+          const status = res.status;
+          const text = await res.text();
+          responseTitle.textContent = `Resposta da API (HTTP ${status})`;
+          try {
+            const json = JSON.parse(text);
+            display(json);
+          } catch {
+            output.textContent = text || '[Resposta sem corpo]';
+          }
+        })
+        .catch(err => {
+          responseTitle.textContent = 'Resposta da API (Erro)';
+          output.textContent = 'Erro: ' + err;
+        });
+    }
+
+    window.onload = () => {
+      const sections = {
+        clientes: ["GET", "GET/:id", "POST", "PUT", "DELETE"],
+        veiculos: ["GET", "GET/:id", "GET?clienteId", "POST", "PUT", "DELETE"],
+        agendamentos: ["GET", "GET/:id", "POST", "PUT", "DELETE"],
+        inclui: ["GET/:id", "POST", "PATCH"],
+        servicos: ["GET", "GET/:id", "POST", "PUT", "DELETE"],
+        historicos: ["GET", "GET/veiculo/:id"]
+      };
+
+      for (const section in sections) {
+        const container = document.getElementById(section);
+        sections[section].forEach((action, index) => {
+          const wrapper = document.createElement('div');
+          wrapper.className = 'request-block';
+
+          const controls = document.createElement('div');
+          controls.className = 'controls';
+
+          const label = document.createElement('div');
+          label.className = 'label';
+          label.textContent = labels[section][index] || action;
+          controls.appendChild(label);
+
+          let method = action.split(/[\/?]/)[0];
+          const btn = document.createElement('button');
+          btn.textContent = action;
+
+          const inputId = `${section}_id_${index}`;
+          const queryId = `${section}_q_${index}`;
+          const bodyId = `${section}Body_${index}`;
+
+          if (section === 'inclui' && ["POST", "PATCH"].includes(method)) {
+            const agInput = document.createElement('input');
+            agInput.type = 'number';
+            agInput.placeholder = 'agendamentoId';
+            agInput.id = `${section}_ag_${index}`;
+            controls.appendChild(agInput);
+
+            const svInput = document.createElement('input');
+            svInput.type = 'number';
+            svInput.placeholder = 'servicoId';
+            svInput.id = `${section}_sv_${index}`;
+            controls.appendChild(svInput);
+
+            btn.onclick = () =>
+              sendRequest(
+                method,
+                '',
+                bodyId,
+                [`${section}_ag_${index}`, `${section}_sv_${index}`]
+              );
+          } else {
+            let idSuffix = action.includes('/:id') || action.includes('/veiculo/:id');
+            let querySuffix = action.includes('?clienteId');
+
+            if (idSuffix || ["PUT", "PATCH", "DELETE"].includes(method)) {
+              const input = document.createElement('input');
+              input.type = 'number';
+              input.placeholder = 'id';
+              input.id = inputId;
+              controls.appendChild(input);
+            } else if (querySuffix) {
+              const input = document.createElement('input');
+              input.type = 'number';
+              input.placeholder = 'clienteId';
+              input.id = queryId;
+              controls.appendChild(input);
+            }
+
+            btn.onclick = () =>
+              sendRequest(
+                method,
+                section + (action.includes('/veiculo') ? '/veiculo' : ''),
+                ["POST", "PUT", "PATCH"].includes(method) ? bodyId : null,
+                idSuffix || ["PUT", "PATCH", "DELETE"].includes(method) ? inputId : null,
+                querySuffix ? queryId : null
+              );
+          }
+
+          controls.appendChild(btn);
+          wrapper.appendChild(controls);
+
+          if (["POST", "PUT", "PATCH"].includes(method)) {
+            const editor = document.createElement('textarea');
+            editor.id = bodyId;
+            editor.className = 'editor';
+            editor.value = defaultBodies[section] || '{}';
+            wrapper.appendChild(editor);
+          }
+
+          container.appendChild(wrapper);
+        });
+      }
+    }
+  </script>
+</body>
+</html>
