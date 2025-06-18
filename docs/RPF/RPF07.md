@@ -28,7 +28,7 @@ Durante o desenvolvimento, foram encontradas várias diferenças entre a estrutu
 |-------|-------|
 | <img src="../img/before_migrate.png" alt="b_m" width="600" /> | <img src="../img/after_migrate.png" alt="a_m" width="600" /> |
 
-> *Tabela 1 – Diferença do output de um `GET/agendamentos/:id` antes e depois do migrate*
+> *Diferença do output de um `GET/agendamentos/:id` antes e depois do migrate*
 
 ---
 
