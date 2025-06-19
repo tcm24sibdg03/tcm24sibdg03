@@ -1,0 +1,3292 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "autoshop-api",
+    "version": "0.0.1",
+    "description": "API REST projeto autoshop - tcm24sibdg03",
+    "contact": {}
+  },
+  "paths": {
+    "/agendamentos/count": {
+      "get": {
+        "x-controller-name": "AgendamentoController",
+        "x-operation-name": "count",
+        "tags": [
+          "AgendamentoController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Agendamento model count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Agendamento.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<Agendamento>"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "AgendamentoController.count"
+      }
+    },
+    "/agendamentos/{agendamentoId}/servicos/{servicoId}": {
+      "post": {
+        "x-controller-name": "IncluiController",
+        "x-operation-name": "adicionarServicoAoAgendamento",
+        "tags": [
+          "IncluiController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Serviço adicionado ao agendamento",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Inclui"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "agendamentoId",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          },
+          {
+            "name": "servicoId",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "IncluiController.adicionarServicoAoAgendamento"
+      },
+      "patch": {
+        "x-controller-name": "IncluiController",
+        "x-operation-name": "atualizarEstadoDoServico",
+        "tags": [
+          "IncluiController"
+        ],
+        "responses": {
+          "204": {
+            "description": "Estado do serviço atualizado com sucesso"
+          }
+        },
+        "parameters": [
+          {
+            "name": "agendamentoId",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          },
+          {
+            "name": "servicoId",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "pendente": {
+                    "type": "boolean"
+                  },
+                  "recomendado": {
+                    "type": "boolean"
+                  },
+                  "executado": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          },
+          "x-parameter-index": 2
+        },
+        "operationId": "IncluiController.atualizarEstadoDoServico"
+      }
+    },
+    "/agendamentos/{agendamentoId}/servicos": {
+      "get": {
+        "x-controller-name": "IncluiController",
+        "x-operation-name": "findServicosPorAgendamento",
+        "tags": [
+          "IncluiController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista de serviços incluídos num agendamento",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Inclui"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "agendamentoId",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "IncluiController.findServicosPorAgendamento"
+      }
+    },
+    "/agendamentos/{id}": {
+      "put": {
+        "x-controller-name": "AgendamentoController",
+        "x-operation-name": "replaceById",
+        "tags": [
+          "AgendamentoController"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Agendamento PUT success"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Agendamento"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "AgendamentoController.replaceById"
+      },
+      "patch": {
+        "x-controller-name": "AgendamentoController",
+        "x-operation-name": "updateById",
+        "tags": [
+          "AgendamentoController"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Agendamento PATCH success"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AgendamentoPartial"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "AgendamentoController.updateById"
+      },
+      "get": {
+        "x-controller-name": "AgendamentoController",
+        "x-operation-name": "findById",
+        "tags": [
+          "AgendamentoController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Agendamento model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Agendamento"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "AgendamentoController.findById"
+      },
+      "delete": {
+        "x-controller-name": "AgendamentoController",
+        "x-operation-name": "deleteById",
+        "tags": [
+          "AgendamentoController"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Agendamento DELETE success"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "AgendamentoController.deleteById"
+      }
+    },
+    "/agendamentos": {
+      "post": {
+        "x-controller-name": "AgendamentoController",
+        "x-operation-name": "create",
+        "tags": [
+          "AgendamentoController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Agendamento model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Agendamento"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewAgendamento"
+              }
+            }
+          }
+        },
+        "operationId": "AgendamentoController.create"
+      },
+      "patch": {
+        "x-controller-name": "AgendamentoController",
+        "x-operation-name": "updateAll",
+        "tags": [
+          "AgendamentoController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Agendamento PATCH success count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Agendamento.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<Agendamento>"
+                }
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AgendamentoPartial"
+              }
+            }
+          }
+        },
+        "operationId": "AgendamentoController.updateAll"
+      },
+      "get": {
+        "x-controller-name": "AgendamentoController",
+        "x-operation-name": "find",
+        "tags": [
+          "AgendamentoController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of Agendamento model instances",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Agendamento"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "AgendamentoController.find"
+      }
+    },
+    "/clientes/count": {
+      "get": {
+        "x-controller-name": "ClienteController",
+        "x-operation-name": "count",
+        "tags": [
+          "ClienteController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Cliente model count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Cliente.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<Cliente>"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "ClienteController.count"
+      }
+    },
+    "/clientes/{id}/veiculos": {
+      "post": {
+        "x-controller-name": "ClienteVeiculoController",
+        "x-operation-name": "create",
+        "tags": [
+          "ClienteVeiculoController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Cliente model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Veiculo"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewVeiculoInCliente"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "ClienteVeiculoController.create"
+      },
+      "patch": {
+        "x-controller-name": "ClienteVeiculoController",
+        "x-operation-name": "patch",
+        "tags": [
+          "ClienteVeiculoController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Cliente.Veiculo PATCH success count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          },
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Veiculo.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<Veiculo>"
+                }
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VeiculoPartial"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "ClienteVeiculoController.patch"
+      },
+      "get": {
+        "x-controller-name": "ClienteVeiculoController",
+        "x-operation-name": "find",
+        "tags": [
+          "ClienteVeiculoController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of Cliente has many Veiculo",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Veiculo"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "ClienteVeiculoController.find"
+      },
+      "delete": {
+        "x-controller-name": "ClienteVeiculoController",
+        "x-operation-name": "delete",
+        "tags": [
+          "ClienteVeiculoController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Cliente.Veiculo DELETE success count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          },
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Veiculo.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<Veiculo>"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "ClienteVeiculoController.delete"
+      }
+    },
+    "/clientes/{id}": {
+      "put": {
+        "x-controller-name": "ClienteController",
+        "x-operation-name": "replaceById",
+        "tags": [
+          "ClienteController"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Cliente PUT success"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Cliente"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "ClienteController.replaceById"
+      },
+      "patch": {
+        "x-controller-name": "ClienteController",
+        "x-operation-name": "updateById",
+        "tags": [
+          "ClienteController"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Cliente PATCH success"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ClientePartial"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "ClienteController.updateById"
+      },
+      "get": {
+        "x-controller-name": "ClienteController",
+        "x-operation-name": "findById",
+        "tags": [
+          "ClienteController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Cliente model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClienteWithRelations"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Cliente.Filter"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "ClienteController.findById"
+      },
+      "delete": {
+        "x-controller-name": "ClienteController",
+        "x-operation-name": "deleteById",
+        "tags": [
+          "ClienteController"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Cliente DELETE success"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "ClienteController.deleteById"
+      }
+    },
+    "/clientes": {
+      "post": {
+        "x-controller-name": "ClienteController",
+        "x-operation-name": "create",
+        "tags": [
+          "ClienteController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Cliente model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Cliente"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewCliente"
+              }
+            }
+          }
+        },
+        "operationId": "ClienteController.create"
+      },
+      "patch": {
+        "x-controller-name": "ClienteController",
+        "x-operation-name": "updateAll",
+        "tags": [
+          "ClienteController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Cliente PATCH success count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Cliente.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<Cliente>"
+                }
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ClientePartial"
+              }
+            }
+          }
+        },
+        "operationId": "ClienteController.updateAll"
+      },
+      "get": {
+        "x-controller-name": "ClienteController",
+        "x-operation-name": "find",
+        "tags": [
+          "ClienteController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of Cliente model instances",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClienteWithRelations"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Cliente.Filter1"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "ClienteController.find"
+      }
+    },
+    "/historicos/veiculo/{veiculoId}": {
+      "get": {
+        "x-controller-name": "HistoricoController",
+        "x-operation-name": "findByVeiculoId",
+        "tags": [
+          "HistoricoController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista de históricos por veículo",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/HistoricoWithRelations"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "veiculoId",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "HistoricoController.findByVeiculoId"
+      }
+    },
+    "/historicos/{id}/agendamento": {
+      "get": {
+        "x-controller-name": "HistoricoAgendamentoController",
+        "x-operation-name": "getAgendamento",
+        "tags": [
+          "HistoricoAgendamentoController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Agendamento belonging to Historico",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Agendamento"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "HistoricoAgendamentoController.getAgendamento"
+      }
+    },
+    "/historicos/{id}/veiculo": {
+      "get": {
+        "x-controller-name": "HistoricoVeiculoController",
+        "x-operation-name": "getVeiculo",
+        "tags": [
+          "HistoricoVeiculoController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Veiculo belonging to Historico",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Veiculo"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "HistoricoVeiculoController.getVeiculo"
+      }
+    },
+    "/historicos": {
+      "get": {
+        "x-controller-name": "HistoricoController",
+        "x-operation-name": "findAll",
+        "tags": [
+          "HistoricoController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista completa do histórico",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/HistoricoWithRelations"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "HistoricoController.findAll"
+      }
+    },
+    "/ping": {
+      "get": {
+        "x-controller-name": "PingController",
+        "x-operation-name": "ping",
+        "tags": [
+          "PingController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ping Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PingResponse"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "PingController.ping"
+      }
+    },
+    "/servicos/count": {
+      "get": {
+        "x-controller-name": "ServicoController",
+        "x-operation-name": "count",
+        "tags": [
+          "ServicoController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Servico model count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Servico.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<Servico>"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "ServicoController.count"
+      }
+    },
+    "/servicos/{id}": {
+      "put": {
+        "x-controller-name": "ServicoController",
+        "x-operation-name": "replaceById",
+        "tags": [
+          "ServicoController"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Servico PUT success"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Servico"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "ServicoController.replaceById"
+      },
+      "patch": {
+        "x-controller-name": "ServicoController",
+        "x-operation-name": "updateById",
+        "tags": [
+          "ServicoController"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Servico PATCH success"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ServicoPartial"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "ServicoController.updateById"
+      },
+      "get": {
+        "x-controller-name": "ServicoController",
+        "x-operation-name": "findById",
+        "tags": [
+          "ServicoController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Servico model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServicoWithRelations"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Servico.Filter"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "ServicoController.findById"
+      },
+      "delete": {
+        "x-controller-name": "ServicoController",
+        "x-operation-name": "deleteById",
+        "tags": [
+          "ServicoController"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Servico DELETE success"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "ServicoController.deleteById"
+      }
+    },
+    "/servicos": {
+      "post": {
+        "x-controller-name": "ServicoController",
+        "x-operation-name": "create",
+        "tags": [
+          "ServicoController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Servico model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Servico"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewServico"
+              }
+            }
+          }
+        },
+        "operationId": "ServicoController.create"
+      },
+      "patch": {
+        "x-controller-name": "ServicoController",
+        "x-operation-name": "updateAll",
+        "tags": [
+          "ServicoController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Servico PATCH success count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Servico.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<Servico>"
+                }
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ServicoPartial"
+              }
+            }
+          }
+        },
+        "operationId": "ServicoController.updateAll"
+      },
+      "get": {
+        "x-controller-name": "ServicoController",
+        "x-operation-name": "find",
+        "tags": [
+          "ServicoController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of Servico model instances",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ServicoWithRelations"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Servico.Filter1"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "ServicoController.find"
+      }
+    },
+    "/veiculos/count": {
+      "get": {
+        "x-controller-name": "VeiculoController",
+        "x-operation-name": "count",
+        "tags": [
+          "VeiculoController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Veiculo model count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Veiculo.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<Veiculo>"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "VeiculoController.count"
+      }
+    },
+    "/veiculos/{id}/agendamentos": {
+      "post": {
+        "x-controller-name": "VeiculoAgendamentoController",
+        "x-operation-name": "create",
+        "tags": [
+          "VeiculoAgendamentoController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Veiculo model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Agendamento"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewAgendamentoInVeiculo"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "VeiculoAgendamentoController.create"
+      },
+      "patch": {
+        "x-controller-name": "VeiculoAgendamentoController",
+        "x-operation-name": "patch",
+        "tags": [
+          "VeiculoAgendamentoController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Veiculo.Agendamento PATCH success count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          },
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Agendamento.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<Agendamento>"
+                }
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AgendamentoPartial"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "VeiculoAgendamentoController.patch"
+      },
+      "get": {
+        "x-controller-name": "VeiculoAgendamentoController",
+        "x-operation-name": "find",
+        "tags": [
+          "VeiculoAgendamentoController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of Veiculo has many Agendamento",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Agendamento"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "VeiculoAgendamentoController.find"
+      },
+      "delete": {
+        "x-controller-name": "VeiculoAgendamentoController",
+        "x-operation-name": "delete",
+        "tags": [
+          "VeiculoAgendamentoController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Veiculo.Agendamento DELETE success count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          },
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Agendamento.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<Agendamento>"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "VeiculoAgendamentoController.delete"
+      }
+    },
+    "/veiculos/{id}/historicos": {
+      "post": {
+        "x-controller-name": "VeiculoHistoricoController",
+        "x-operation-name": "create",
+        "tags": [
+          "VeiculoHistoricoController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Veiculo model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Historico"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewHistoricoInVeiculo"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "VeiculoHistoricoController.create"
+      },
+      "patch": {
+        "x-controller-name": "VeiculoHistoricoController",
+        "x-operation-name": "patch",
+        "tags": [
+          "VeiculoHistoricoController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Veiculo.Historico PATCH success count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          },
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Historico.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<Historico>"
+                }
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HistoricoPartial"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "VeiculoHistoricoController.patch"
+      },
+      "get": {
+        "x-controller-name": "VeiculoHistoricoController",
+        "x-operation-name": "find",
+        "tags": [
+          "VeiculoHistoricoController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of Veiculo has many Historico",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Historico"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "VeiculoHistoricoController.find"
+      },
+      "delete": {
+        "x-controller-name": "VeiculoHistoricoController",
+        "x-operation-name": "delete",
+        "tags": [
+          "VeiculoHistoricoController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Veiculo.Historico DELETE success count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          },
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Historico.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<Historico>"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "VeiculoHistoricoController.delete"
+      }
+    },
+    "/veiculos/{id}": {
+      "put": {
+        "x-controller-name": "VeiculoController",
+        "x-operation-name": "replaceById",
+        "tags": [
+          "VeiculoController"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Veiculo PUT success"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Veiculo"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "VeiculoController.replaceById"
+      },
+      "patch": {
+        "x-controller-name": "VeiculoController",
+        "x-operation-name": "updateById",
+        "tags": [
+          "VeiculoController"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Veiculo PATCH success"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VeiculoPartial"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "VeiculoController.updateById"
+      },
+      "get": {
+        "x-controller-name": "VeiculoController",
+        "x-operation-name": "findById",
+        "tags": [
+          "VeiculoController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Veiculo model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Veiculo"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "VeiculoController.findById"
+      },
+      "delete": {
+        "x-controller-name": "VeiculoController",
+        "x-operation-name": "deleteById",
+        "tags": [
+          "VeiculoController"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Veiculo DELETE success"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "number"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "VeiculoController.deleteById"
+      }
+    },
+    "/veiculos": {
+      "post": {
+        "x-controller-name": "VeiculoController",
+        "x-operation-name": "create",
+        "tags": [
+          "VeiculoController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Veiculo model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Veiculo"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewVeiculo"
+              }
+            }
+          }
+        },
+        "operationId": "VeiculoController.create"
+      },
+      "patch": {
+        "x-controller-name": "VeiculoController",
+        "x-operation-name": "updateAll",
+        "tags": [
+          "VeiculoController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Veiculo PATCH success count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Veiculo.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<Veiculo>"
+                }
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VeiculoPartial"
+              }
+            }
+          }
+        },
+        "operationId": "VeiculoController.updateAll"
+      },
+      "get": {
+        "x-controller-name": "VeiculoController",
+        "x-operation-name": "find",
+        "tags": [
+          "VeiculoController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of Veiculo model instances",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/VeiculoWithRelations"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Veiculo.Filter"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "VeiculoController.find"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "http://127.0.0.1:3000"
+    }
+  ],
+  "components": {
+    "schemas": {
+      "Veiculo": {
+        "title": "Veiculo",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "matricula": {
+            "type": "string"
+          },
+          "marca": {
+            "type": "string"
+          },
+          "modelo": {
+            "type": "string"
+          },
+          "ano": {
+            "type": "number"
+          },
+          "km": {
+            "type": "number"
+          },
+          "vin": {
+            "type": "string"
+          },
+          "clienteId": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "matricula",
+          "marca",
+          "modelo",
+          "ano",
+          "km",
+          "vin",
+          "clienteId"
+        ],
+        "additionalProperties": false
+      },
+      "NewVeiculo": {
+        "title": "NewVeiculo",
+        "type": "object",
+        "description": "(tsType: Omit<Veiculo, 'id'>, schemaOptions: { title: 'NewVeiculo', exclude: [ 'id' ] })",
+        "properties": {
+          "matricula": {
+            "type": "string"
+          },
+          "marca": {
+            "type": "string"
+          },
+          "modelo": {
+            "type": "string"
+          },
+          "ano": {
+            "type": "number"
+          },
+          "km": {
+            "type": "number"
+          },
+          "vin": {
+            "type": "string"
+          },
+          "clienteId": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "matricula",
+          "marca",
+          "modelo",
+          "ano",
+          "km",
+          "vin",
+          "clienteId"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "Omit<Veiculo, 'id'>"
+      },
+      "ServicoWithRelations": {
+        "title": "ServicoWithRelations",
+        "type": "object",
+        "description": "(tsType: ServicoWithRelations, schemaOptions: { includeRelations: true })",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "tipo": {
+            "type": "string"
+          },
+          "preco": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "tipo",
+          "preco"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "ServicoWithRelations"
+      },
+      "AgendamentoWithRelations": {
+        "title": "AgendamentoWithRelations",
+        "type": "object",
+        "description": "(tsType: AgendamentoWithRelations, schemaOptions: { includeRelations: true })",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "data": {
+            "type": "string"
+          },
+          "hora": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "Pendente",
+              "Confirmado",
+              "Cancelado"
+            ]
+          },
+          "veiculoId": {
+            "type": "number"
+          },
+          "servicos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ServicoWithRelations"
+            }
+          }
+        },
+        "required": [
+          "data",
+          "hora",
+          "status",
+          "veiculoId"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "AgendamentoWithRelations"
+      },
+      "HistoricoWithRelations": {
+        "title": "HistoricoWithRelations",
+        "type": "object",
+        "description": "(tsType: HistoricoWithRelations, schemaOptions: { includeRelations: true })",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "notas": {
+            "type": "string"
+          },
+          "veiculoId": {
+            "type": "number"
+          },
+          "agendamentoId": {
+            "type": "number"
+          },
+          "veiculo": {
+            "$ref": "#/components/schemas/VeiculoWithRelations"
+          },
+          "foreignKey": {},
+          "agendamento": {
+            "$ref": "#/components/schemas/AgendamentoWithRelations"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "HistoricoWithRelations"
+      },
+      "VeiculoWithRelations": {
+        "title": "VeiculoWithRelations",
+        "type": "object",
+        "description": "(tsType: VeiculoWithRelations, schemaOptions: { includeRelations: true })",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "matricula": {
+            "type": "string"
+          },
+          "marca": {
+            "type": "string"
+          },
+          "modelo": {
+            "type": "string"
+          },
+          "ano": {
+            "type": "number"
+          },
+          "km": {
+            "type": "number"
+          },
+          "vin": {
+            "type": "string"
+          },
+          "clienteId": {
+            "type": "number"
+          },
+          "agendamentos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AgendamentoWithRelations"
+            }
+          },
+          "historicos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/HistoricoWithRelations"
+            }
+          }
+        },
+        "required": [
+          "matricula",
+          "marca",
+          "modelo",
+          "ano",
+          "km",
+          "vin",
+          "clienteId"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "VeiculoWithRelations"
+      },
+      "VeiculoPartial": {
+        "title": "VeiculoPartial",
+        "type": "object",
+        "description": "(tsType: Partial<Veiculo>, schemaOptions: { partial: true })",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "matricula": {
+            "type": "string"
+          },
+          "marca": {
+            "type": "string"
+          },
+          "modelo": {
+            "type": "string"
+          },
+          "ano": {
+            "type": "number"
+          },
+          "km": {
+            "type": "number"
+          },
+          "vin": {
+            "type": "string"
+          },
+          "clienteId": {
+            "type": "number"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "Partial<Veiculo>"
+      },
+      "Historico": {
+        "title": "Historico",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "notas": {
+            "type": "string"
+          },
+          "veiculoId": {
+            "type": "number"
+          },
+          "agendamentoId": {
+            "type": "number"
+          }
+        },
+        "additionalProperties": false
+      },
+      "NewHistoricoInVeiculo": {
+        "title": "NewHistoricoInVeiculo",
+        "type": "object",
+        "description": "(tsType: @loopback/repository-json-schema#Optional<Omit<Historico, 'id'>, 'veiculoId'>, schemaOptions: { title: 'NewHistoricoInVeiculo', exclude: [ 'id' ], optional: [ 'veiculoId' ] })",
+        "properties": {
+          "notas": {
+            "type": "string"
+          },
+          "veiculoId": {
+            "type": "number"
+          },
+          "agendamentoId": {
+            "type": "number"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository-json-schema#Optional<Omit<Historico, 'id'>, 'veiculoId'>"
+      },
+      "HistoricoPartial": {
+        "title": "HistoricoPartial",
+        "type": "object",
+        "description": "(tsType: Partial<Historico>, schemaOptions: { partial: true })",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "notas": {
+            "type": "string"
+          },
+          "veiculoId": {
+            "type": "number"
+          },
+          "agendamentoId": {
+            "type": "number"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "Partial<Historico>"
+      },
+      "Agendamento": {
+        "title": "Agendamento",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "data": {
+            "type": "string"
+          },
+          "hora": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "Pendente",
+              "Confirmado",
+              "Cancelado"
+            ]
+          },
+          "veiculoId": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "data",
+          "hora",
+          "status",
+          "veiculoId"
+        ],
+        "additionalProperties": false
+      },
+      "NewAgendamentoInVeiculo": {
+        "title": "NewAgendamentoInVeiculo",
+        "type": "object",
+        "description": "(tsType: @loopback/repository-json-schema#Optional<Omit<Agendamento, 'id'>, 'veiculoId'>, schemaOptions: { title: 'NewAgendamentoInVeiculo', exclude: [ 'id' ], optional: [ 'veiculoId' ] })",
+        "properties": {
+          "data": {
+            "type": "string"
+          },
+          "hora": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "Pendente",
+              "Confirmado",
+              "Cancelado"
+            ]
+          },
+          "veiculoId": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "data",
+          "hora",
+          "status"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository-json-schema#Optional<Omit<Agendamento, 'id'>, 'veiculoId'>"
+      },
+      "AgendamentoPartial": {
+        "title": "AgendamentoPartial",
+        "type": "object",
+        "description": "(tsType: Partial<Agendamento>, schemaOptions: { partial: true })",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "data": {
+            "type": "string"
+          },
+          "hora": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "Pendente",
+              "Confirmado",
+              "Cancelado"
+            ]
+          },
+          "veiculoId": {
+            "type": "number"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "Partial<Agendamento>"
+      },
+      "Servico": {
+        "title": "Servico",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "tipo": {
+            "type": "string"
+          },
+          "preco": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "tipo",
+          "preco"
+        ],
+        "additionalProperties": false
+      },
+      "NewServico": {
+        "title": "NewServico",
+        "type": "object",
+        "description": "(tsType: Omit<Servico, 'id'>, schemaOptions: { title: 'NewServico', exclude: [ 'id' ] })",
+        "properties": {
+          "tipo": {
+            "type": "string"
+          },
+          "preco": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "tipo",
+          "preco"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "Omit<Servico, 'id'>"
+      },
+      "ServicoPartial": {
+        "title": "ServicoPartial",
+        "type": "object",
+        "description": "(tsType: Partial<Servico>, schemaOptions: { partial: true })",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "tipo": {
+            "type": "string"
+          },
+          "preco": {
+            "type": "number"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "Partial<Servico>"
+      },
+      "Inclui": {
+        "title": "Inclui",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "recomendado": {
+            "type": "boolean"
+          },
+          "executado": {
+            "type": "boolean"
+          },
+          "pendente": {
+            "type": "boolean"
+          },
+          "agendamentoId": {
+            "type": "number"
+          },
+          "servicoId": {
+            "type": "number"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Cliente": {
+        "title": "Cliente",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "nome": {
+            "type": "string"
+          },
+          "telefone": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "nome",
+          "telefone",
+          "email"
+        ],
+        "additionalProperties": false
+      },
+      "NewCliente": {
+        "title": "NewCliente",
+        "type": "object",
+        "description": "(tsType: Omit<Cliente, 'id'>, schemaOptions: { title: 'NewCliente', exclude: [ 'id' ] })",
+        "properties": {
+          "nome": {
+            "type": "string"
+          },
+          "telefone": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "nome",
+          "telefone",
+          "email"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "Omit<Cliente, 'id'>"
+      },
+      "ClienteWithRelations": {
+        "title": "ClienteWithRelations",
+        "type": "object",
+        "description": "(tsType: ClienteWithRelations, schemaOptions: { includeRelations: true })",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "nome": {
+            "type": "string"
+          },
+          "telefone": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "veiculos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VeiculoWithRelations"
+            }
+          }
+        },
+        "required": [
+          "nome",
+          "telefone",
+          "email"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "ClienteWithRelations"
+      },
+      "ClientePartial": {
+        "title": "ClientePartial",
+        "type": "object",
+        "description": "(tsType: Partial<Cliente>, schemaOptions: { partial: true })",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "nome": {
+            "type": "string"
+          },
+          "telefone": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "Partial<Cliente>"
+      },
+      "NewVeiculoInCliente": {
+        "title": "NewVeiculoInCliente",
+        "type": "object",
+        "description": "(tsType: @loopback/repository-json-schema#Optional<Omit<Veiculo, 'id'>, 'clienteId'>, schemaOptions: { title: 'NewVeiculoInCliente', exclude: [ 'id' ], optional: [ 'clienteId' ] })",
+        "properties": {
+          "matricula": {
+            "type": "string"
+          },
+          "marca": {
+            "type": "string"
+          },
+          "modelo": {
+            "type": "string"
+          },
+          "ano": {
+            "type": "number"
+          },
+          "km": {
+            "type": "number"
+          },
+          "vin": {
+            "type": "string"
+          },
+          "clienteId": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "matricula",
+          "marca",
+          "modelo",
+          "ano",
+          "km",
+          "vin"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository-json-schema#Optional<Omit<Veiculo, 'id'>, 'clienteId'>"
+      },
+      "NewAgendamento": {
+        "title": "NewAgendamento",
+        "type": "object",
+        "description": "(tsType: Omit<Agendamento, 'id'>, schemaOptions: { title: 'NewAgendamento', exclude: [ 'id' ] })",
+        "properties": {
+          "data": {
+            "type": "string"
+          },
+          "hora": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "Pendente",
+              "Confirmado",
+              "Cancelado"
+            ]
+          },
+          "veiculoId": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "data",
+          "hora",
+          "status",
+          "veiculoId"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "Omit<Agendamento, 'id'>"
+      },
+      "loopback.Count": {
+        "type": "object",
+        "title": "loopback.Count",
+        "x-typescript-type": "@loopback/repository#Count",
+        "properties": {
+          "count": {
+            "type": "number"
+          }
+        }
+      },
+      "Cliente.ScopeFilter": {
+        "type": "object",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "where": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "fields": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "uniqueItems": true
+              }
+            ]
+          },
+          "include": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {},
+              "additionalProperties": true
+            }
+          }
+        },
+        "additionalProperties": false,
+        "title": "Cliente.ScopeFilter"
+      },
+      "Cliente.IncludeFilter.Items": {
+        "title": "Cliente.IncludeFilter.Items",
+        "type": "object",
+        "properties": {
+          "relation": {
+            "type": "string",
+            "enum": [
+              "veiculos"
+            ]
+          },
+          "scope": {
+            "$ref": "#/components/schemas/Cliente.ScopeFilter"
+          }
+        }
+      },
+      "Cliente.Filter": {
+        "type": "object",
+        "title": "Cliente.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "fields": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "boolean"
+                  },
+                  "nome": {
+                    "type": "boolean"
+                  },
+                  "telefone": {
+                    "type": "boolean"
+                  },
+                  "email": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "id",
+                    "nome",
+                    "telefone",
+                    "email"
+                  ],
+                  "example": "id"
+                },
+                "uniqueItems": true
+              }
+            ],
+            "title": "Cliente.Fields"
+          },
+          "include": {
+            "title": "Cliente.IncludeFilter",
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/Cliente.IncludeFilter.Items"
+                },
+                {
+                  "type": "string"
+                }
+              ]
+            }
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<Cliente>"
+      },
+      "Cliente.Filter1": {
+        "type": "object",
+        "title": "Cliente.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "where": {
+            "title": "Cliente.WhereFilter",
+            "type": "object",
+            "additionalProperties": true
+          },
+          "fields": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "boolean"
+                  },
+                  "nome": {
+                    "type": "boolean"
+                  },
+                  "telefone": {
+                    "type": "boolean"
+                  },
+                  "email": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "id",
+                    "nome",
+                    "telefone",
+                    "email"
+                  ],
+                  "example": "id"
+                },
+                "uniqueItems": true
+              }
+            ],
+            "title": "Cliente.Fields"
+          },
+          "include": {
+            "title": "Cliente.IncludeFilter",
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/Cliente.IncludeFilter.Items"
+                },
+                {
+                  "type": "string"
+                }
+              ]
+            }
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<Cliente>"
+      },
+      "PingResponse": {
+        "type": "object",
+        "title": "PingResponse",
+        "properties": {
+          "greeting": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "headers": {
+            "type": "object",
+            "properties": {
+              "Content-Type": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": true
+          }
+        }
+      },
+      "Servico.Filter": {
+        "type": "object",
+        "title": "Servico.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "fields": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "boolean"
+                  },
+                  "tipo": {
+                    "type": "boolean"
+                  },
+                  "preco": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "id",
+                    "tipo",
+                    "preco"
+                  ],
+                  "example": "id"
+                },
+                "uniqueItems": true
+              }
+            ],
+            "title": "Servico.Fields"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<Servico>"
+      },
+      "Servico.Filter1": {
+        "type": "object",
+        "title": "Servico.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "where": {
+            "title": "Servico.WhereFilter",
+            "type": "object",
+            "additionalProperties": true
+          },
+          "fields": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "boolean"
+                  },
+                  "tipo": {
+                    "type": "boolean"
+                  },
+                  "preco": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "id",
+                    "tipo",
+                    "preco"
+                  ],
+                  "example": "id"
+                },
+                "uniqueItems": true
+              }
+            ],
+            "title": "Servico.Fields"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<Servico>"
+      },
+      "Veiculo.ScopeFilter": {
+        "type": "object",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "where": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "fields": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "uniqueItems": true
+              }
+            ]
+          },
+          "include": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {},
+              "additionalProperties": true
+            }
+          }
+        },
+        "additionalProperties": false,
+        "title": "Veiculo.ScopeFilter"
+      },
+      "Veiculo.IncludeFilter.Items": {
+        "title": "Veiculo.IncludeFilter.Items",
+        "type": "object",
+        "properties": {
+          "relation": {
+            "type": "string",
+            "enum": [
+              "agendamentos",
+              "historicos"
+            ]
+          },
+          "scope": {
+            "$ref": "#/components/schemas/Veiculo.ScopeFilter"
+          }
+        }
+      },
+      "Veiculo.Filter": {
+        "type": "object",
+        "title": "Veiculo.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "where": {
+            "title": "Veiculo.WhereFilter",
+            "type": "object",
+            "additionalProperties": true
+          },
+          "fields": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "boolean"
+                  },
+                  "matricula": {
+                    "type": "boolean"
+                  },
+                  "marca": {
+                    "type": "boolean"
+                  },
+                  "modelo": {
+                    "type": "boolean"
+                  },
+                  "ano": {
+                    "type": "boolean"
+                  },
+                  "km": {
+                    "type": "boolean"
+                  },
+                  "vin": {
+                    "type": "boolean"
+                  },
+                  "clienteId": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "id",
+                    "matricula",
+                    "marca",
+                    "modelo",
+                    "ano",
+                    "km",
+                    "vin",
+                    "clienteId"
+                  ],
+                  "example": "id"
+                },
+                "uniqueItems": true
+              }
+            ],
+            "title": "Veiculo.Fields"
+          },
+          "include": {
+            "title": "Veiculo.IncludeFilter",
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/Veiculo.IncludeFilter.Items"
+                },
+                {
+                  "type": "string"
+                }
+              ]
+            }
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<Veiculo>"
+      }
+    }
+  }
+}
