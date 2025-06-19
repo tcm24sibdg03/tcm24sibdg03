@@ -55,7 +55,7 @@ Marcações feitas para serviços a serem realizados.
 | id    | Identificador da marcação          | INT, PRIMARY KEY, AUTO_INCREMENT                | -            | Sim         | Não  |
 | data               | Data da marcação                   | DATE NOT NULL                                   | CURRENT_DATE ()            | Não         | Não  |
 | hora               | Hora da marcação                   | TIME NOT NULL                                   | CURRENT_TIME ()          | Não         | Não  |
-| status | Estado da marcação (confirmado?)   | VARCHAR(20) NOT NULL                            | -            | Não         | Não  |
+| status | Estado da marcação (confirmado?)   | ENUM('Pendente', 'Confirmado', 'Cancelado') NOT NULL                            | -            | Não         | Não  |
 | id_veiculo         | Veículo a ser intervencionado      | INT, FOREIGN KEY → Veiculo(id_veiculo) NOT NULL | -            | Não         | Não  |
 
 ---
